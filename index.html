@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>G-Shop - All Products</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Shop | International Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #eaeded; }
+        .amazon-dark { background-color: #131921; }
+    </style>
+</head>
+<body>
+
+    <header class="amazon-dark text-white p-2 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="text-2xl font-bold text-[#febd69] cursor-pointer">G-Shop</div>
+            <div class="flex-1 max-w-2xl flex h-10">
+                <input type="text" class="w-full p-2 rounded-l text-black outline-none" placeholder="Search G-Shop.com">
+                <button class="bg-[#febd69] px-5 rounded-r text-black font-bold">🔍</button>
+            </div>
+            <div class="flex gap-4 text-xs font-bold items-center">
+                <div class="p-1 border border-transparent hover:border-white">
+                    <p class="font-normal text-gray-300">Hello, Gurpreet</p>
+                    <p>Account & Lists</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-4 border flex flex-col hover:shadow-lg transition">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" class="h-40 object-contain mb-4 mx-auto">
+                <h2 class="text-sm font-bold mb-2">Elite Wireless Pods Pro</h2>
+                <div class="text-xl font-bold mb-4 text-[#B12704]">$89.99</div>
+                <button onclick="openCheckout('Elite Wireless Pods Pro', 89.99)" class="bg-[#ffd814] w-full py-2 rounded-full font-bold text-xs border border-[#fcd200] mb-2">Add to Cart</button>
+                <button onclick="openCheckout('Elite Wireless Pods Pro', 89.99)" class="bg-[#ffa41c] w-full py-2 rounded-full font-bold text-xs border border-[#ee940b]">Buy Now</button>
+            </div>
+            <div class="bg-white p-4 border flex flex-col hover:shadow-lg transition">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=300" class="h-40 object-contain mb-4 mx-auto">
+                <h2 class="text-sm font-bold mb-2">UltraSlim 4K Dash Cam</h2>
+                <div class="text-xl font-bold mb-4 text-[#B12704]">$119.99</div>
+                <button onclick="openCheckout('UltraSlim 4K Dash Cam', 119.99)" class="bg-[#ffa41c] w-full py-2 rounded-full font-bold text-xs border border-[#ee940b]">Buy Now</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded p-6 relative">
+            <button onclick="closeCheckout()" class="absolute top-2 right-4 text-2xl">✕</button>
+            <h2 class="text-xl font-bold mb-4 border-b pb-2">Secure Checkout</h2>
+            <p id="itemDetail" class="mb-4 font-bold text-orange-700"></p>
+            <form onsubmit="alert('Order Successful!'); return false;" class="space-y-4">
+                <input required type="text" placeholder="Full Name" class="w-full border p-2 rounded">
+                <textarea required placeholder="Shipping Address" class="w-full border p-2 rounded h-20"></textarea>
+                <button class="w-full bg-[#ffa41c] py-3 rounded font-bold shadow-lg">PLACE ORDER</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openCheckout(name, price) {
+            document.getElementById('itemDetail').innerText = name + " - $" + price;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        function closeCheckout() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+    </script>
+</body>
 </html>
+
