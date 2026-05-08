@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-SHOP | Premium International Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --gshop-orange: #f37021; --gshop-dark: #232f3e; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; }
+        .header-top { background-color: white; border-bottom: 1px solid #ddd; }
+        .nav-bar { background-color: var(--gshop-dark); color: white; }
+        .btn-orange { background-color: var(--gshop-orange); color: white; transition: 0.3s; }
+        .btn-orange:hover { background-color: #d65a10; }
+        .admin-only { display: none; } /* Hidden by default */
+        .product-card { background: white; border: 1px solid #e2e8f0; transition: transform 0.2s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .warning-box { border: 2px solid #ff0000; background: #fff5f5; color: #cc0000; padding: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="header-top py-2 px-4 flex justify-between text-xs font-semibold text-gray-600">
+    <div><i class="fas fa-phone"></i> +1 (800) G-SHOP-US | +44 (0) 20 GLOBAL</div>
+    <div class="flex gap-4">
+        <span><i class="fas fa-map-marker-alt text-orange-500"></i> Track Order</span>
+        <button onclick="toggleAdmin()" class="text-gray-400 hover:text-orange-500 underline">Admin Panel Access</button>
+    </div>
+</div>
+
+<div class="bg-white p-4 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50 shadow-md">
+    <div class="text-3xl font-black text-orange-500 tracking-tighter">G-SHOP</div>
+    <div class="flex-1 max-w-2xl flex border-2 border-orange-500 rounded-lg overflow-hidden">
+        <select class="bg-gray-100 p-2 text-sm border-r outline-none"><option>All</option></select>
+        <input type="text" placeholder="Search G-SHOP..." class="flex-1 p-2 outline-none">
+        <button class="bg-orange-500 text-white px-6"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="flex gap-6 text-sm">
+        <div class="cursor-pointer">Hello, Guest<br><b>Account & Lists</b></div>
+        <div class="cursor-pointer">Returns<br><b>& Orders</b></div>
+        <div class="relative pt-2 cursor-pointer text-2xl"><i class="fas fa-shopping-cart"></i><span class="absolute top-0 right-[-10px] bg-orange-500 text-white text-xs px-1.5 rounded-full">0</span></div>
+    </div>
+</div>
+
+<div class="nav-bar px-4 py-2 flex gap-6 text-sm font-medium overflow-x-auto whitespace-nowrap">
+    <a href="#" class="hover:text-orange-400">Food & Grocery Luxe</a>
+    <a href="#" class="hover:text-orange-400">Electronics (High-End)</a>
+    <a href="#" class="hover:text-orange-400">Baby Care (Premium)</a>
+    <a href="#" class="hover:text-orange-400">Pet Elite</a>
+    <a href="#" class="hover:text-orange-400 text-yellow-400 font-bold">Poke-Vault (Cards)</a>
+    <a href="#" class="hover:text-orange-400">Animation Elite</a>
+</div>
+
+<div class="max-w-7xl mx-auto p-4 flex flex-col md:flex-row gap-6">
+    
+    <div class="md:w-1/3 space-y-4">
+        <div class="bg-white p-4 rounded shadow-sm border border-orange-200">
+            <h3 class="font-bold border-b pb-2 mb-2">USA/CANADA LIVE LOGISTICS</h3>
+            <div class="h-48 bg-gray-200 flex items-center justify-center rounded">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg" class="opacity-50 h-full w-full object-cover">
+                <i class="fas fa-truck-moving absolute text-orange-500 text-3xl animate-bounce"></i>
+            </div>
+            <p class="text-xs mt-2 text-gray-500 text-center uppercase tracking-widest">Real-Time Delivery Tracking Active</p>
+        </div>
+
+        <div class="warning-box text-sm">
+            <i class="fas fa-exclamation-triangle"></i> SPECIAL ORDER: $2,500+ PROFIT ADVISORY
+            <p class="font-normal text-xs mt-1">7-15 Days Delivery. Contact Driver for GPS Coordination. Confirm Supplier Stock Before Approval.</p>
+        </div>
+    </div>
+
+    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="product-card p-4 rounded-lg">
+            <img src="https://img.fruugo.com/product/5/83/800977835_max.jpg" class="h-40 mx-auto object-contain mb-2">
+            <h4 class="text-sm font-semibold">Poke-Vault (Premium Cards): PSA 10 Charizard</h4>
+            <div class="text-xl font-bold text-gray-800 mt-1">$8,500.00</div>
+            <p class="text-xs text-gray-400 line-through">$10,200.00</p>
+            <button onclick="handlePurchase(8500)" class="w-full mt-3 btn-orange py-2 rounded text-sm font-bold">Buy Now</button>
+        </div>
+
+        <div class="product-card p-4 rounded-lg">
+            <img src="https://m.media-amazon.com/images/I/718y6f9LlvL._AC_SL1500_.jpg" class="h-40 mx-auto object-contain mb-2">
+            <h4 class="text-sm font-semibold">Animation Elite: Limited Naruto 1/4 Scale Figure</h4>
+            <div class="text-xl font-bold text-gray-800 mt-1">$1,250.00</div>
+            <button onclick="handlePurchase(1250)" class="w-full mt-3 btn-orange py-2 rounded text-sm font-bold">Buy Now</button>
+        </div>
+
+        <div class="product-card p-4 rounded-lg">
+            <img src="https://m.media-amazon.com/images/I/81Os1SDWpcL._AC_SL1500_.jpg" class="h-40 mx-auto object-contain mb-2">
+            <h4 class="text-sm font-semibold">Samsung S24 Ultra - Titanium Gray</h4>
+            <div class="text-xl font-bold text-gray-800 mt-1">$1,299.00</div>
+            <button onclick="handlePurchase(1299)" class="w-full mt-3 btn-orange py-2 rounded text-sm font-bold">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div id="adminPanel" class="fixed inset-0 bg-black bg-opacity-90 z-[100] admin-only overflow-y-auto p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-2xl relative">
+        <button onclick="toggleAdmin()" class="absolute top-4 right-4 text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-black text-orange-500 mb-6 border-b pb-4">G-SHOP MASTER ADMIN PANEL</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-green-100 p-4 rounded-lg border-l-4 border-green-500">
+                <p class="text-xs uppercase text-green-700">Monthly Profit Target</p>
+                <p class="text-2xl font-bold text-green-800">₹6,00,00,000</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
+                <p class="text-xs uppercase text-blue-700">Auto-Order API Status</p>
+                <p class="text-2xl font-bold text-blue-800">CONNECTED</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg border-l-4 border-orange-500">
+                <p class="text-xs uppercase text-orange-700">FIRC Reports</p>
+                <p class="text-2xl font-bold text-orange-800">SYNCED</p>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded border">
+            <h3 class="font-bold mb-3">Pending High-Ticket Refunds ($1,000+)</h3>
+            <p class="text-sm text-gray-500 italic">No pending approvals. Manual signature check active.</p>
+        </div>
+    </div>
+</div>
+
+<footer class="mt-12 bg-gray-100 border-t py-8 px-4 text-center">
+    <div class="flex justify-center gap-8 mb-4 opacity-70 grayscale">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/McAfee_logo.svg" width="80">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Norton_by_Symantec_Logo.svg" width="100">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/PCI_DSS_Logo.svg" width="60">
+    </div>
+    <p class="text-xs text-gray-500">© 2026 G-SHOP International. All Rights Reserved. G-SHOP is a trademark of Global Solutions.</p>
+</footer>
+
+<script>
+    // SECURITY CONFIG (Aapka Password Yahan Set Karein)
+    const SECRET_KEY = "GShop@Elite2026"; // Change this!
+
+    function toggleAdmin() {
+        let password = prompt("Enter Secret Admin Password:");
+        if (password === SECRET_KEY) {
+            document.getElementById('adminPanel').classList.toggle('admin-only');
+        } else {
+            alert("Unauthorized Access Denied!");
+        }
+    }
+
+    function handlePurchase(price) {
+        if (price < 1000) {
+            alert("Order Processing via PayPal...\nNOTE: Under $1000 items are NON-REFUNDABLE per agreement.");
+        } else {
+            alert("Processing High-Ticket Order via API Bridge...\nYour purchase of $" + price + " requires manual verification by Admin.");
+        }
+        // Yahan Automatic API order ka logic backend mein trigger hoga
+    }
+</script>
+
+</body>
+                  </html>
+
