@@ -1,175 +1,191 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-SHOP | USA & Canada Premium Store</title>
+    <title>G-Shop | USA Premium Electronics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Exact Colors from your Screenshot */
         :root {
             --amz-dark: #131921;
             --amz-navy: #232f3e;
             --amz-orange: #f37021;
-            --amz-bg: #eaeded;
-            --card-dark: #1a1a1a;
+            --btn-yellow: #ffd814;
+            --btn-orange: #ffa41c;
+            --bg-gray: #eaeded;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: var(--amz-bg); color: #0f1111; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: white; color: #0f1111; }
 
-        /* --- HEADER & NAVIGATION --- */
-        header { background: var(--amz-dark); padding: 10px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 1000; }
-        .logo { color: white; font-size: 24px; font-weight: 800; cursor: pointer; text-decoration: none; }
+        /* --- Main Header --- */
+        header { background: var(--amz-dark); padding: 10px 15px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 1000; }
+        .logo { color: white; font-size: 20px; font-weight: 800; text-decoration: none; min-width: 90px; }
         .logo span { color: var(--amz-orange); }
 
-        .search-container { flex: 1; display: flex; height: 40px; background: white; border-radius: 4px; overflow: hidden; }
-        .search-container input { flex: 1; border: none; padding: 0 15px; outline: none; font-size: 14px; }
+        .search-box { flex: 1; display: flex; height: 38px; background: white; border-radius: 4px; overflow: hidden; }
+        .search-box input { flex: 1; border: none; padding: 0 10px; outline: none; font-size: 14px; }
         .search-btn { background: var(--amz-orange); border: none; width: 45px; color: white; cursor: pointer; }
 
-        .nav-tools { display: flex; align-items: center; gap: 15px; color: white; }
-        .cart-icon { position: relative; font-size: 24px; cursor: pointer; }
-        #cart-count { position: absolute; top: -5px; right: -8px; background: var(--amz-orange); color: white; font-size: 11px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .cart-icon { position: relative; color: white; font-size: 22px; padding-left: 10px; }
+        #cart-count { position: absolute; top: -8px; right: -5px; background: var(--amz-orange); color: white; font-size: 11px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        .nav-belt { background: var(--amz-navy); color: white; padding: 8px 20px; display: flex; gap: 20px; font-size: 13px; }
-        .nav-belt a { color: white; text-decoration: none; cursor: pointer; }
+        /* --- Nav Belt --- */
+        .nav-belt { background: var(--amz-navy); color: white; padding: 8px 15px; display: flex; gap: 15px; font-size: 12px; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #37475a; }
+        .nav-belt a { color: white; text-decoration: none; opacity: 0.9; }
 
-        /* --- DASHBOARD GRID (Photo Style) --- */
-        .main-content { max-width: 1400px; margin: 20px auto; padding: 0 15px; }
-        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; }
+        /* --- Page Layout --- */
+        .container { display: flex; max-width: 1500px; margin: 0 auto; }
 
-        .hero-banner { grid-row: span 2; background: #000 url('https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg') center/cover; border-radius: 8px; min-height: 450px; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; color: white; }
-        .hero-banner h1 { font-size: 38px; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        /* Sidebar Filter (Left Side) */
+        aside { width: 200px; padding: 20px 15px; flex-shrink: 0; border-right: 1px solid #ddd; height: calc(100vh - 100px); position: sticky; top: 90px; }
+        aside h3 { font-size: 14px; margin-bottom: 12px; font-weight: 700; }
+        aside ul { list-style: none; }
+        aside li { font-size: 13px; margin-bottom: 10px; cursor: pointer; color: #444; }
+        aside li:hover { color: var(--amz-orange); }
+        aside .active { font-weight: 700; color: var(--amz-orange); border-left: 3px solid var(--amz-orange); padding-left: 5px; }
 
-        .small-card { background: var(--card-dark); border-radius: 8px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #333; }
-        .small-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; }
-        .small-card h3 { font-size: 16px; margin-bottom: 5px; }
-        .btn-orange { background: var(--amz-orange); border: none; color: white; padding: 8px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 12px; }
+        /* Main Content (Right Side) */
+        main { flex: 1; padding: 15px; background: white; }
+        .results-bar { font-size: 13px; padding-bottom: 15px; border-bottom: 1px solid #eee; margin-bottom: 15px; }
 
-        /* --- PRODUCT LIST SECTION --- */
-        .section-title { margin: 30px 0 15px; font-size: 22px; font-weight: 700; border-left: 5px solid var(--amz-orange); padding-left: 10px; }
-        .product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .p-card { background: white; padding: 15px; border: 1px solid #ddd; border-radius: 4px; transition: 0.3s; }
-        .p-card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .p-img { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        .p-img img { max-height: 100%; max-width: 100%; }
-        .p-title { font-size: 14px; height: 40px; overflow: hidden; color: #007185; margin-bottom: 8px; }
-        .p-price { font-size: 24px; font-weight: 700; color: #111; margin-bottom: 10px; }
-        .p-price small { font-size: 12px; vertical-align: top; }
+        /* --- Product Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; display: flex; flex-direction: column; border-radius: 4px; position: relative; }
+        .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        
+        .badge { position: absolute; top: 5px; left: 5px; background: #c45500; color: white; font-size: 10px; padding: 2px 6px; font-weight: bold; border-radius: 2px; }
+        
+        .img-box { height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-        /* --- ADMIN PANEL MODAL --- */
-        #admin-panel { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; color: white; padding: 50px; }
-        .admin-box { background: #222; max-width: 600px; margin: auto; padding: 30px; border-radius: 10px; border: 1px solid var(--amz-orange); }
+        .title { font-size: 14px; color: #007185; margin-bottom: 5px; height: 38px; overflow: hidden; cursor: pointer; line-height: 1.3; }
+        .title:hover { color: var(--amz-orange); }
+        
+        .rating { color: #ffa41c; font-size: 12px; margin-bottom: 8px; }
+        .price { font-size: 24px; font-weight: 500; display: flex; align-items: flex-start; margin-bottom: 15px; }
+        .price span { font-size: 13px; margin-top: 4px; margin-right: 2px; }
 
-        /* --- MOBILE --- */
+        /* Buttons Style */
+        .btn { border: 1px solid; border-radius: 20px; padding: 8px; font-size: 13px; font-weight: 500; cursor: pointer; width: 100%; margin-bottom: 8px; outline: none; }
+        .btn-cart { background: var(--btn-yellow); border-color: #a88734; }
+        .btn-buy { background: var(--btn-orange); border-color: #ca7c1b; }
+
+        /* --- Footer --- */
+        footer { background: var(--amz-navy); color: white; padding: 30px 15px; margin-top: 50px; text-align: center; }
+        .f-links { font-size: 12px; opacity: 0.8; margin-bottom: 15px; display: flex; justify-content: center; gap: 20px; }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .hero-banner { min-height: 250px; }
+            aside { display: none; }
+            .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .card { padding: 10px; }
+            .price { font-size: 18px; }
+            .logo { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="#" class="logo">G-SHOP<span>.io</span></a>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search G-Shop USA/Canada...">
+    <a href="#" class="logo">G-Shop<span>.io</span></a>
+    <div class="search-box">
+        <input type="text" placeholder="Search G-Shop USA...">
         <button class="search-btn"><i class="fa fa-search"></i></button>
     </div>
-    <div class="nav-tools">
-        <div class="nav-item hidden-mobile" style="font-size: 12px;">Hello, Guru<br><b>Account</b></div>
-        <div class="cart-icon" onclick="alert('Proceeding to Checkout...')">
-            <i class="fa fa-shopping-cart"></i>
-            <span id="cart-count">0</span>
-        </div>
+    <div class="cart-icon" onclick="alert('Proceed to Checkout')">
+        <i class="fa fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
     </div>
 </header>
 
 <nav class="nav-belt">
-    <a href="#">Electronics</a>
+    <a href="#">All Products</a>
+    <a href="#">Audio</a>
+    <a href="#">Wearables</a>
     <a href="#">Gaming</a>
-    <a href="#">Smart Home</a>
-    <a href="#">Pet Elite</a>
-    <a href="#" onclick="openAdmin()" style="color:var(--amz-orange)">Admin Panel</a>
+    <a href="#" style="font-weight:bold; color:var(--amz-orange)">Electronics</a>
+    <a href="#" onclick="openAdmin()">Admin Panel</a>
 </nav>
 
-<div class="main-content">
-    <div class="dashboard-grid">
-        <div class="hero-banner">
-            <p style="color: var(--amz-orange); font-weight: bold;">PREMIUM DEALS</p>
-            <h1>$4,500+ Luxury<br>Massage Chair</h1>
-            <button class="btn-orange" style="width: 150px; padding: 12px;">Shop Exclusive</button>
-        </div>
-        
-        <div class="small-card">
-            <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg">
-            <div class="info">
-                <h3>8K Quantum TV</h3>
-                <p style="font-size: 12px; color: #aaa;">Ultimate Clarity</p>
-            </div>
-            <button class="btn-orange">Shop TV</button>
+<div class="container">
+    <aside>
+        <h3>Department</h3>
+        <ul>
+            <li>All</li>
+            <li>Audio</li>
+            <li>Wearables</li>
+            <li>Gaming</li>
+            <li class="active">Electronics</li>
+            <li>Smart Home</li>
+            <li>Automotive</li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="results-bar">
+            1-6 of 9 results for <b style="color:var(--amz-orange)">"Premium Electronics"</b>
         </div>
 
-        <div class="small-card">
-            <img src="https://m.media-amazon.com/images/I/71u9S+yO6AL._AC_SL1500_.jpg">
-            <div class="info">
-                <h3>Baby Care</h3>
-                <p style="font-size: 12px; color: #aaa;">Premium Comfort</p>
+        <div class="grid">
+            <div class="card">
+                <span class="badge">PREMIUM</span>
+                <div class="img-box"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
+                <div class="title">Pro Massage Chair X1 - Full Body Shiatsu Recliner</div>
+                <div class="rating">⭐⭐⭐⭐⭐ 2,847</div>
+                <div class="price"><span>$</span>3,499<span>.00</span></div>
+                <button class="btn btn-cart" onclick="add()">Add to Cart</button>
+                <button class="btn btn-buy">Buy Now</button>
             </div>
-            <button class="btn-orange">View More</button>
-        </div>
-    </div>
 
-    <h2 class="section-title">Trending in US/Canada</h2>
-    <div class="product-list" id="productGrid">
-        <div class="p-card">
-            <div class="p-img"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
-            <div class="p-title">High-End Gaming PC Tower - RTX 4090, Liquid Cool</div>
-            <div class="p-price"><small>$</small>1,999<small>.00</small></div>
-            <button class="btn-orange" style="width: 100%;" onclick="addToCart()">Add to Cart</button>
+            <div class="card">
+                <span class="badge">TOP SELLER</span>
+                <div class="img-box"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
+                <div class="title">8K Quantum TV 75" Ultra HD Smart TV</div>
+                <div class="rating">⭐⭐⭐⭐⭐ 1,223</div>
+                <div class="price"><span>$</span>2,999<span>.00</span></div>
+                <button class="btn btn-cart" onclick="add()">Add to Cart</button>
+                <button class="btn btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <div class="img-box"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
+                <div class="title">High-End Gaming PC Tower - RTX 4090, 64GB</div>
+                <div class="rating">⭐⭐⭐⭐⭐ 1,990</div>
+                <div class="price"><span>$</span>1,999<span>.00</span></div>
+                <button class="btn btn-cart" onclick="add()">Add to Cart</button>
+                <button class="btn btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <div class="img-box"><img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg"></div>
+                <div class="title">Drone Pro Controller - 4K Camera Professional</div>
+                <div class="rating">⭐⭐⭐⭐ 987</div>
+                <div class="price"><span>$</span>1,199<span>.00</span></div>
+                <button class="btn btn-cart" onclick="add()">Add to Cart</button>
+                <button class="btn btn-buy">Buy Now</button>
+            </div>
         </div>
-        <div class="p-card">
-            <div class="p-img"><img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg"></div>
-            <div class="p-title">Drone Pro Controller - 4K Camera Professional</div>
-            <div class="p-price"><small>$</small>1,199<small>.00</small></div>
-            <button class="btn-orange" style="width: 100%;" onclick="addToCart()">Add to Cart</button>
-        </div>
-    </div>
+    </main>
 </div>
 
-<div id="admin-panel">
-    <div class="admin-box">
-        <h2>Admin Control Center</h2>
-        <p style="margin: 15px 0;">Enter password to edit products or view orders.</p>
-        <input type="password" id="adminPass" style="width:100%; padding:10px; margin-bottom:20px;">
-        <button class="btn-orange" style="width:100%" onclick="checkAdmin()">Login</button>
-        <button onclick="closeAdmin()" style="background:none; border:none; color:white; margin-top:15px; cursor:pointer;">Cancel</button>
+<footer>
+    <div class="f-links">
+        <span>About Us</span> | <span>Returns</span> | <span>Help</span> | <span>USA/Canada Export</span>
     </div>
-</div>
+    <p style="font-size: 11px; opacity: 0.6;">© 2026 G-SHOP USA. All rights reserved.</p>
+</footer>
 
 <script>
-    let cart = 0;
-    function addToCart() {
-        cart++;
-        document.getElementById('cart-count').innerText = cart;
-        alert("Item added to cart!");
+    let c = 0;
+    function add() {
+        c++;
+        document.getElementById('cart-count').innerText = c;
     }
-
     function openAdmin() {
-        document.getElementById('admin-panel').style.display = 'flex';
-    }
-
-    function closeAdmin() {
-        document.getElementById('admin-panel').style.display = 'none';
-    }
-
-    function checkAdmin() {
-        let pass = document.getElementById('adminPass').value;
-        if(pass === "1234") {
-            alert("Welcome Guru! Loading Database...");
-            closeAdmin();
-        } else {
-            alert("Wrong Password!");
-        }
+        let p = prompt("Admin Password:");
+        if(p === "1234") alert("Access Granted!");
     }
 </script>
 
