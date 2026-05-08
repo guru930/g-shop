@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon.com.gshop | Shop Online</title>
+    <title>G-Shop.io | Unleash Premium Electronics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -12,161 +12,201 @@
             --amz-yellow: #febd69;
             --btn-gold: #ffd814;
             --btn-orange: #ffa41c;
-            --amz-bg: #eaeded;
+            --bg-gray: #eaeded;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Amazon Ember', Arial, sans-serif; }
-        body { background-color: var(--amz-bg); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: white; color: #0f1111; }
 
-        /* --- Amazon Main Header --- */
-        header { background: var(--amz-dark); height: 60px; display: flex; align-items: center; padding: 0 20px; gap: 15px; }
-        .logo { color: white; font-size: 22px; font-weight: bold; text-decoration: none; padding-top: 5px; }
+        /* --- Top Navigation --- */
+        header { background: #131921; padding: 10px 4%; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #333; }
+        .logo { color: white; font-size: 26px; font-weight: 800; text-decoration: none; display: flex; align-items: center; }
         .logo span { color: var(--amz-yellow); }
 
-        .search-bar { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
-        .search-cat { background: #f3f3f3; border: none; padding: 0 10px; border-right: 1px solid #ccc; font-size: 12px; cursor: pointer; }
-        .search-bar input { flex: 1; border: none; padding: 0 10px; outline: none; font-size: 15px; }
-        .search-icon { background: var(--amz-yellow); width: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 18px; }
+        .search-box { flex: 1; display: flex; height: 38px; position: relative; }
+        .search-box input { width: 100%; border-radius: 6px; border: none; padding: 0 15px; background: #37475a; color: white; outline: none; }
+        .search-icon { position: absolute; right: 10px; top: 8px; color: #aaa; cursor: pointer; }
 
-        .nav-right { display: flex; color: white; gap: 20px; font-size: 12px; }
-        .nav-item b { font-size: 14px; display: block; }
+        .nav-right { display: flex; align-items: center; gap: 20px; color: white; font-size: 14px; }
+        .nav-right b { display: block; font-size: 15px; }
 
-        /* --- Secondary Nav --- */
-        .sub-nav { background: var(--amz-navy); height: 39px; color: white; display: flex; align-items: center; padding: 0 20px; gap: 15px; font-size: 14px; }
-        .sub-nav span { cursor: pointer; padding: 5px; border: 1px solid transparent; }
-        .sub-nav span:hover { border: 1px solid white; }
+        /* --- Sub Bar --- */
+        .sub-bar { background: #232f3e; color: white; padding: 8px 4%; display: flex; gap: 15px; font-size: 13px; overflow-x: auto; white-space: nowrap; }
 
-        /* --- Main Layout --- */
-        .container { max-width: 1500px; margin: 0 auto; padding: 20px; position: relative; }
+        /* --- Promo Strip --- */
+        .promo-strip { background: #000; color: var(--amz-yellow); text-align: center; padding: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+
+        /* --- Hero Banner (Ditto Screenshot) --- */
+        .hero { background: #000; margin: 15px 4%; border-radius: 15px; padding: 30px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; position: relative; }
+        .hero-text h1 { color: white; font-size: 28px; line-height: 1.2; text-transform: uppercase; }
+        .hero-text p { color: var(--amz-yellow); font-size: 20px; font-weight: 700; margin-top: 5px; }
+        .hero-btn { background: var(--amz-yellow); border: none; padding: 8px 18px; border-radius: 20px; font-weight: 800; margin-top: 15px; cursor: pointer; }
+
+        /* --- Content Layout --- */
+        .layout { display: flex; padding: 20px 4%; gap: 20px; }
         
-        /* Hero Banner (Ditto as Amazon) */
-        .hero { width: 100%; height: 250px; background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, var(--amz-bg)), 
-                url('https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg'); 
-                background-size: cover; background-position: center; margin-bottom: -100px; }
+        .side-bar { width: 180px; flex-shrink: 0; }
+        .side-bar h3 { font-size: 16px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
+        .brands-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; opacity: 0.8; }
+        .brands-grid i { font-size: 24px; }
 
-        /* Product Cards Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; position: relative; z-index: 10; }
-        .card { background: white; padding: 20px; display: flex; flex-direction: column; min-height: 420px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .card h2 { font-size: 21px; margin-bottom: 15px; height: 30px; overflow: hidden; }
+        /* --- Product Grid --- */
+        .main-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
         
-        .img-box { flex: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .img-box img { max-height: 250px; max-width: 100%; object-fit: contain; }
+        /* CARD DESIGN (EXACT AS SCREENSHOT) */
+        .card { background: white; border: 1px solid #ddd; border-radius: 12px; padding: 15px; position: relative; }
+        .card .badge { position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 700; color: #555; background: #eee; padding: 2px 8px; border-radius: 4px; }
+        
+        .img-wrap { height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin: 10px 0; }
+        .img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-        .price-row { margin: 10px 0; }
-        .price-row .curr { font-size: 13px; position: relative; top: -10px; }
-        .price-row .amt { font-size: 28px; font-weight: 500; }
+        .p-name { font-size: 14px; font-weight: 700; margin-bottom: 5px; height: 35px; overflow: hidden; }
+        .p-meta { font-size: 11px; color: #666; margin-bottom: 8px; }
+        .p-rating { color: #ffa41c; font-size: 12px; margin-bottom: 5px; }
+        .p-price { font-size: 22px; font-weight: 800; margin-bottom: 15px; }
 
-        /* Buttons Styling */
-        .btn-group { margin-top: auto; }
-        .btn { width: 100%; padding: 8px; border-radius: 20px; border: 1px solid; cursor: pointer; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
-        .btn-yellow { background: var(--btn-gold); border-color: #a88734; }
-        .btn-orange { background: var(--btn-orange); border-color: #ca7c1b; }
+        .btn { border: none; border-radius: 6px; padding: 10px; font-size: 12px; font-weight: 800; width: 100%; cursor: pointer; margin-bottom: 5px; text-transform: uppercase; }
+        .btn-cart { background: var(--btn-gold); }
+        .btn-buy { background: #7b848c; color: white; }
 
-        /* --- Admin Modal --- */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-box { background: white; padding: 30px; border-radius: 4px; width: 350px; text-align: center; }
-        .modal-box input { width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #888; }
+        /* Trust Icons Section */
+        .trust-section { border-top: 1px solid #ddd; padding: 30px 4%; display: flex; justify-content: space-around; text-align: center; font-size: 12px; font-weight: 600; }
+        .trust-item i { font-size: 24px; display: block; margin-bottom: 10px; }
 
-        footer { background: var(--amz-navy); color: white; padding: 40px; text-align: center; margin-top: 50px; }
+        /* Footer Mirror */
+        footer { background: #232f3e; color: white; padding: 40px 4%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; font-size: 13px; }
+        footer h4 { margin-bottom: 15px; font-size: 14px; }
+        footer ul { list-style: none; opacity: 0.8; line-height: 1.8; }
+
+        /* Admin Modal */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-box { background: white; padding: 30px; border-radius: 12px; width: 350px; text-align: center; }
+        .modal-box input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 6px; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">G-SHOP<span>.io</span></a>
-        <div class="search-bar">
-            <button class="search-cat">All <i class="fa fa-caret-down"></i></button>
-            <input type="text" placeholder="Search G-SHOP">
-            <button class="search-icon"><i class="fa fa-search"></i></button>
+        <a href="#" class="logo">G-Shop<span>.io</span></a>
+        <div class="search-box">
+            <input type="text" placeholder="Search Products...">
+            <i class="fa fa-search search-icon"></i>
         </div>
         <div class="nav-right">
-            <div class="nav-item">Hello, Guru<br><b>Account & Lists</b></div>
-            <div class="nav-item">Returns<br><b>& Orders</b></div>
-            <div class="nav-item" style="display:flex; align-items:center;">
-                <i class="fa fa-shopping-cart" style="font-size:24px;"></i> <b>Cart</b>
-            </div>
+            <div class="nav-item">Hello,<br><b>Guru</b></div>
+            <div class="nav-item"><i class="fa fa-shopping-cart" style="font-size:22px;"></i></div>
         </div>
     </header>
 
-    <div class="sub-nav">
-        <span>All</span>
-        <span>Today's Deals</span>
-        <span>Customer Service</span>
-        <span>Gift Cards</span>
-        <span>Sell</span>
-        <span onclick="openAdmin()" style="color:var(--amz-yellow)">Admin Login</span>
+    <div class="sub-bar">
+        <span>All Audio</span> | <span>Wearables</span> | <span>Gaming</span> | <span>Electronics</span> | <span>Smart Home</span> | <span>Track Order</span> | <span onclick="openAdmin()" style="color:var(--amz-yellow); cursor:pointer;">Admin Panel</span>
     </div>
 
-    <div class="hero"></div>
+    <div class="promo-strip">✨ SPEND $100+ & SAVE $30 INSTANTLY AT CHECKOUT</div>
 
-    <div class="container">
-        <div class="grid">
-            <div class="card">
-                <h2>Premium Massage Chair</h2>
-                <div class="img-box"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
-                <div class="price-row"><span class="curr">$</span><span class="amt">3,499.00</span></div>
-                <div class="btn-group">
-                    <button class="btn btn-yellow">Add to Cart</button>
-                    <button class="btn btn-orange" onclick="alert('Order Success! DHL ID: G930-X')">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>8K Quantum Smart TV</h2>
-                <div class="img-box"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
-                <div class="price-row"><span class="curr">$</span><span class="amt">2,999.00</span></div>
-                <div class="btn-group">
-                    <button class="btn btn-yellow">Add to Cart</button>
-                    <button class="btn btn-orange">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Gaming Desktop RTX 4090</h2>
-                <div class="img-box"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
-                <div class="price-row"><span class="curr">$</span><span class="amt">1,999.00</span></div>
-                <div class="btn-group">
-                    <button class="btn btn-yellow">Add to Cart</button>
-                    <button class="btn btn-orange">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Smart Refrigerator</h2>
-                <div class="img-box"><img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg"></div>
-                <div class="price-row"><span class="curr">$</span><span class="amt">1,549.00</span></div>
-                <div class="btn-group">
-                    <button class="btn btn-yellow">Add to Cart</button>
-                    <button class="btn btn-orange">Buy Now</button>
-                </div>
-            </div>
+    <div class="hero">
+        <div class="hero-text">
+            <h1>UNLEASH PREMIUM ELECTRONICS.<br>Unbeatable Offers.</h1>
+            <button class="hero-btn">Shop Now</button>
         </div>
+        <img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg" style="height:140px;">
     </div>
 
-    <div id="admin-modal" class="modal">
-        <div class="modal-box">
-            <h3>Admin Access</h3>
-            <input type="password" id="pass-field" placeholder="Password">
-            <button class="btn btn-orange" onclick="check()">Login</button>
-            <button onclick="closeModal()" style="border:none; background:none; cursor:pointer;">Cancel</button>
-        </div>
+    <div class="layout">
+        <aside class="side-bar">
+            <h3>EXCLUSIVE PARTNER BRANDS</h3>
+            <div class="brands-grid">
+                <i class="fab fa-apple"></i>
+                <i class="fab fa-playstation"></i>
+                <i class="fab fa-xbox"></i>
+                <i class="fab fa-windows"></i>
+                <i class="fab fa-android"></i>
+                <i class="fab fa-amazon"></i>
+            </div>
+        </aside>
+
+        <main class="main-grid">
+            <div class="card">
+                <span class="badge">Electronics</span>
+                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
+                <div class="p-name">Pro Massage Chair X1 Full Body Shiatsu</div>
+                <div class="p-meta">Verified User | Fast Shipping</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 2,947</div>
+                <div class="p-price">$3,499.00</div>
+                <button class="btn btn-cart">ADD TO CART</button>
+                <button class="btn btn-buy">BUY NOW</button>
+            </div>
+
+            <div class="card">
+                <span class="badge">Gaming</span>
+                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
+                <div class="p-name">8K Quantum TV 75" Quantum Processor</div>
+                <div class="p-meta">1,223+ Happy Customers</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 1,223</div>
+                <div class="p-price">$2,999.00</div>
+                <button class="btn btn-cart">ADD TO CART</button>
+                <button class="btn btn-buy">BUY NOW</button>
+            </div>
+
+            <div class="card">
+                <span class="badge">Electronics</span>
+                <div class="img-wrap"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
+                <div class="p-name">High-End Gaming PC Tower RTX 4090</div>
+                <div class="p-meta">Liquid Cool System</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 1,990</div>
+                <div class="p-price">$1,999.00</div>
+                <button class="btn btn-cart">ADD TO CART</button>
+                <button class="btn btn-buy">BUY NOW</button>
+            </div>
+        </main>
+    </div>
+
+    <div class="trust-section">
+        <div class="trust-item"><i class="fa fa-truck"></i> Fast, Insured Shipping</div>
+        <div class="trust-item"><i class="fa fa-check-circle"></i> Verified and Certified Authentic</div>
+        <div class="trust-item"><i class="fa fa-sync"></i> Easy, No-Stress Returns</div>
     </div>
 
     <footer>
-        <p>© 2026 G-SHOP Global | A Professional Amazon-Style Platform</p>
+        <div>
+            <h4>Get to Know Us</h4>
+            <ul><li>About G-Shop</li><li>Careers</li><li>Press Center</li></ul>
+        </div>
+        <div>
+            <h4>Make Money with Us</h4>
+            <ul><li>Sell on G-Shop</li><li>Affiliate Program</li><li>Advertise Your Products</li></ul>
+        </div>
+        <div>
+            <h4>Payment Products</h4>
+            <ul><li>G-Shop Business Card</li><li>Shop with Points</li><li>Reload Your Balance</li></ul>
+        </div>
+        <div>
+            <h4>Let Us Help You</h4>
+            <ul><li>Track My Order</li><li>Returns & Replacements</li><li>Help</li></ul>
+        </div>
     </footer>
+
+    <div id="admin-modal" class="modal">
+        <div class="modal-box">
+            <h3>Admin Dashboard Access</h3>
+            <input type="password" id="admin-pass" placeholder="Enter Password">
+            <button class="btn btn-cart" onclick="check()">Login</button>
+            <p onclick="closeModal()" style="margin-top:15px; cursor:pointer; color:#777; font-size:12px;">Cancel</p>
+        </div>
+    </div>
 
     <script>
         function openAdmin() { document.getElementById('admin-modal').style.display = 'flex'; }
         function closeModal() { document.getElementById('admin-modal').style.display = 'none'; }
         function check() {
-            if(document.getElementById('pass-field').value === "Guru930") {
-                alert("Access Granted, Guru!");
+            if(document.getElementById('admin-pass').value === "Guru930") {
+                alert("Welcome Admin!");
                 closeModal();
             } else {
-                alert("Invalid Password!");
+                alert("Wrong Password!");
             }
         }
     </script>
 </body>
-</html>
+    </html>
+    
