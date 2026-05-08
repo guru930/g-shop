@@ -7,183 +7,96 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gs-orange: #f37021; --gs-dark: #232f3e; --gs-light-bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: white; margin: 0; }
-        
-        /* Header & Search Bar */
-        .header-main { background-color: white; border-bottom: 1px solid #ddd; padding: 10px 20px; }
-        .search-container { border: 2px solid var(--gs-orange); border-radius: 6px; overflow: hidden; display: flex; flex: 1; max-width: 800px; }
-        
-        /* Nav Belt */
-        .nav-belt { background-color: var(--gs-dark); color: white; display: flex; gap: 20px; padding: 8px 20px; font-size: 12px; }
-        
-        /* Sidebar */
-        .sidebar { width: 220px; padding: 20px; border-right: 1px solid #eee; height: fit-content; }
+        :root { --gs-orange: #f37021; --gs-dark: #232f3e; }
+        body { font-family: 'Arial', sans-serif; background-color: #fff; margin: 0; }
+        .header-main { border-bottom: 1px solid #ddd; padding: 10px 20px; }
+        .search-bar { border: 2px solid var(--gs-orange); border-radius: 6px; display: flex; flex: 1; max-width: 700px; overflow: hidden; }
+        .nav-belt { background-color: var(--gs-dark); color: white; display: flex; gap: 15px; padding: 8px 20px; font-size: 12px; }
+        .sidebar { width: 200px; padding: 20px; border-right: 1px solid #eee; min-height: 100vh; }
         .sidebar h3 { font-size: 14px; font-weight: bold; margin-bottom: 10px; }
-        .sidebar ul { list-style: none; padding: 0; font-size: 13px; color: #555; }
-        .sidebar li { margin-bottom: 8px; cursor: pointer; }
-        .sidebar li:hover { color: var(--gs-orange); }
+        .sidebar li { list-style: none; font-size: 13px; margin-bottom: 8px; color: #555; cursor: pointer; }
         .sidebar li.active { font-weight: bold; color: var(--gs-orange); }
-
-        /* Product Cards */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-        .card { border: 1px solid #eee; padding: 15px; border-radius: 4px; display: flex; flex-direction: column; transition: 0.3s; }
-        .card:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .card img { height: 180px; object-fit: contain; margin-bottom: 15px; }
-        .tag { font-size: 10px; font-weight: bold; color: white; padding: 2px 6px; border-radius: 2px; width: fit-content; margin-bottom: 5px; }
-        .tag-premium { background-color: #d48b11; }
-        .tag-bestseller { background-color: #c45500; }
-        
-        /* Buttons */
-        .btn-cart { background-color: #f0c14b; border: 1px solid #a88734; color: #111; padding: 8px; border-radius: 3px; font-size: 12px; font-weight: 500; margin-bottom: 8px; }
-        .btn-buy { background-color: #ed9220; border: 1px solid #ca7605; color: #111; padding: 8px; border-radius: 3px; font-size: 12px; font-weight: 500; }
-        
-        /* Footer */
-        .footer-dark { background-color: var(--gs-dark); color: white; padding: 40px 20px; font-size: 12px; margin-top: 50px; }
-        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .footer-back-to-top { background-color: #37475a; color: white; text-align: center; padding: 15px; font-size: 13px; cursor: pointer; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 20px; flex: 1; }
+        .card { border: 1px solid #eee; padding: 15px; border-radius: 4px; display: flex; flex-direction: column; text-align: center; }
+        .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .card img { height: 160px; object-fit: contain; margin-bottom: 10px; width: 100%; }
+        .price { font-size: 20px; font-weight: bold; margin: 10px 0; }
+        .btn-cart { background-color: #f0c14b; border: 1px solid #a88734; padding: 8px; border-radius: 3px; font-size: 12px; margin-bottom: 5px; cursor: pointer; }
+        .btn-buy { background-color: #ed9220; border: 1px solid #ca7605; padding: 8px; border-radius: 3px; font-size: 12px; cursor: pointer; }
+        .footer-dark { background-color: var(--gs-dark); color: white; padding: 40px 20px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-<header class="header-main flex items-center justify-between">
-    <div class="text-3xl font-black text-orange-500 tracking-tighter" style="color: #f37021;">G-Shop</div>
-    <div class="search-container">
+<header class="header-main flex items-center justify-between gap-4">
+    <div class="text-3xl font-black text-orange-500 tracking-tighter" style="color: var(--gs-orange);">G-Shop</div>
+    <div class="search-bar">
         <select class="bg-gray-100 p-2 text-xs border-r outline-none"><option>All</option></select>
-        <input type="text" placeholder="Search G-Shop..." class="flex-1 p-2 outline-none text-sm">
-        <button class="bg-orange-500 text-white px-6" style="background-color: #f37021;"><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="Search Electronics..." class="flex-1 p-2 outline-none text-sm">
+        <button class="bg-orange-500 text-white px-6" style="background-color: var(--gs-orange);"><i class="fas fa-search"></i></button>
     </div>
-    <div class="flex gap-6 text-xs text-gray-700 ml-4">
-        <div>Hello, Gurpreet<br><b class="text-sm">Account & Lists</b></div>
-        <div>Returns<br><b class="text-sm">& Orders</b></div>
-        <div class="text-2xl relative"><i class="fas fa-shopping-cart text-gray-800"></i><span class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded-full">0</span><span class="text-sm font-bold ml-1">Cart</span></div>
+    <div class="flex gap-4 text-xs">
+        <div>Hello, Gurpreet<br><b>Account</b></div>
+        <div class="text-2xl pt-1"><i class="fas fa-shopping-cart"></i></div>
     </div>
 </header>
 
 <nav class="nav-belt">
-    <span>All Products</span>
-    <span>Audio</span>
-    <span>Wearables</span>
-    <span>Gaming</span>
-    <span style="color: #febd69; font-weight: bold;">Electronics</span>
-    <span>Smart Home</span>
-    <span>Automotive</span>
-    <span>Track Order</span>
-    <span style="color: #febd69; cursor: pointer;" onclick="prompt('Admin Password:')">Admin Panel</span>
+    <span>All Products</span><span>Audio</span><span>Wearables</span><span>Gaming</span>
+    <span style="color: #febd69; font-weight: bold;">Electronics</span><span>Smart Home</span><span>Admin Panel</span>
 </nav>
 
-<div class="px-6 py-2 text-[10px] text-gray-500">Home > All Products</div>
-
 <div class="flex max-w-[1400px] mx-auto">
-    
     <aside class="sidebar">
         <h3>Department</h3>
         <ul>
-            <li>All</li>
-            <li>Audio</li>
-            <li>Wearables</li>
-            <li>Gaming</li>
-            <li class="active">Electronics</li>
-            <li>Smart Home</li>
-            <li>Automotive</li>
-            <li>Accessories</li>
+            <li>All</li><li>Audio</li><li>Wearables</li>
+            <li class="active">Electronics</li><li>Smart Home</li><li>Automotive</li>
         </ul>
     </aside>
 
     <main class="flex-1">
-        <div class="p-4 border-b text-sm text-gray-600 flex justify-between items-center">
-            <span>1-9 of 9 results in <b>Electronics</b></span>
-            <span class="text-xs text-blue-600 cursor-pointer">Clear filters</span>
-        </div>
-
+        <div class="p-4 border-b text-sm text-gray-500">1-8 of 8 results in <b>Electronics</b></div>
         <div class="product-grid">
-            
             <div class="card">
-                <span class="tag tag-premium">PREMIUM</span>
-                <img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">Pro Massage Chair X1</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 2,847</div>
-                <div class="text-xl font-bold mb-4">$3,499.<span class="text-xs align-top">00</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
+                <img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg" alt="Massage Chair">
+                <h4 class="text-sm font-medium">Pro Massage Chair X1</h4>
+                <div class="price">$3,499.00</div>
+                <button class="btn-cart">Add to Cart</button><button class="btn-buy">Buy Now</button>
             </div>
-
             <div class="card">
-                <span class="tag tag-bestseller" style="background-color: #c45500;">TOP SELLER</span>
-                <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">8K Quantum TV 75"</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 1,223</div>
-                <div class="text-xl font-bold mb-4">$2,999.<span class="text-xs align-top">00</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
+                <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg" alt="8K TV">
+                <h4 class="text-sm font-medium">8K Quantum TV 75"</h4>
+                <div class="price">$2,999.00</div>
+                <button class="btn-cart">Add to Cart</button><button class="btn-buy">Buy Now</button>
             </div>
-
             <div class="card">
-                <img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">High-End Gaming PC Tower</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 1,990</div>
-                <div class="text-xl font-bold mb-4">$1,999.<span class="text-xs align-top">00</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
+                <img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg" alt="Gaming PC">
+                <h4 class="text-sm font-medium">High-End Gaming PC</h4>
+                <div class="price">$1,999.00</div>
+                <button class="btn-cart">Add to Cart</button><button class="btn-buy">Buy Now</button>
             </div>
-
             <div class="card">
-                <span class="tag" style="background-color: #ca7605;">LIMITED</span>
-                <img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">Drone Pro Controller</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐ 987</div>
-                <div class="text-xl font-bold mb-4">$1,199.<span class="text-xs align-top">00</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
+                <img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg" alt="Drone">
+                <h4 class="text-sm font-medium">Drone Pro Controller</h4>
+                <div class="price">$1,199.00</div>
+                <button class="btn-cart">Add to Cart</button><button class="btn-buy">Buy Now</button>
             </div>
-
-            <div class="card">
-                <img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">Smart Home Generator</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 4,521</div>
-                <div class="text-xl font-bold mb-4">$2,499.<span class="text-xs align-top">00</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
-
-            <div class="card">
-                <img src="https://m.media-amazon.com/images/I/61X508v81HL._AC_SL1500_.jpg">
-                <h4 class="text-sm font-medium h-10 overflow-hidden">Wireless Charging Pad Trio</h4>
-                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 4,571</div>
-                <div class="text-xl font-bold mb-4">$1,154.<span class="text-xs align-top">99</span></div>
-                <button class="btn-cart">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
-
         </div>
     </main>
 </div>
 
-<div class="footer-back-to-top">Back to top</div>
-<footer class="footer-dark">
-    <div class="footer-grid">
-        <div>
-            <h4 class="font-bold mb-4">Get to Know Us</h4>
-            <p>About G-Shop</p><p>Careers</p><p>Press Center</p>
-        </div>
-        <div>
-            <h4 class="font-bold mb-4">Make Money with Us</h4>
-            <p>Sell on G-Shop</p><p>Affiliate Program</p>
-        </div>
-        <div>
-            <h4 class="font-bold mb-4">Payment Products</h4>
-            <p>Business Card</p><p>Shop with Points</p>
-        </div>
-        <div>
-            <h4 class="font-bold mb-4">Let Us Help You</h4>
-            <p>Track Order</p><p>Shipping & Rates</p><p>Returns</p>
-        </div>
+<footer class="footer-dark text-center">
+    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-left text-sm opacity-80">
+        <div><b>Get to Know Us</b><br>About G-Shop<br>Careers</div>
+        <div><b>Make Money</b><br>Sell on G-Shop<br>Affiliate</div>
+        <div><b>Payment</b><br>Business Card<br>Shop with Points</div>
+        <div><b>Help</b><br>Track Order<br>Returns</div>
     </div>
-    <div class="text-center mt-12 opacity-50 border-t border-gray-600 pt-8">
+    <div class="mt-10 border-t border-gray-600 pt-8 opacity-50 text-xs">
         © 2026 G-SHOP International. All Rights Reserved.
     </div>
 </footer>
 
 </body>
 </html>
-
