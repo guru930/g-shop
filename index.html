@@ -3,168 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-SHOP | Premium Electronics</title>
+    <title>G-SHOP | Premium Global</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --amz-dark: #131921;
-            --amz-navy: #232f3e;
-            --amz-orange: #febd69;
-            --btn-yellow: #ffd814;
-            --btn-orange: #ffa41c;
-            --bg-gray: #eaeded; /* The specific grey background from your photo */
-        }
+        /* DITTO COPY FROM 1000262686.jpg */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #eaeded; color: #0f1111; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Amazon Ember', Arial, sans-serif; }
-        body { background-color: var(--bg-gray); color: #0f1111; }
+        /* Header Fix */
+        header { background: #131921; height: 60px; display: flex; align-items: center; padding: 0 20px; gap: 10px; position: sticky; top: 0; z-index: 100; }
+        .logo { color: white; font-size: 24px; font-weight: bold; text-decoration: none; min-width: 100px; }
+        .logo span { color: #febd69; }
 
-        /* --- Header: Matching Screenshot Structure --- */
-        header { background: var(--amz-dark); height: 60px; display: flex; align-items: center; padding: 0 15px; position: sticky; top: 0; z-index: 1000; }
-        .logo { color: white; font-size: 22px; font-weight: bold; text-decoration: none; padding-top: 5px; }
-        .logo span { color: var(--amz-orange); }
+        .search-box { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
+        .search-box input { flex: 1; border: none; padding: 0 10px; outline: none; font-size: 14px; }
+        .search-btn { background: #febd69; border: none; width: 45px; cursor: pointer; font-size: 18px; }
 
-        .search-container { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; margin: 0 15px; }
-        .search-cat { background: #f3f3f3; border: none; padding: 0 10px; border-right: 1px solid #ccc; font-size: 12px; cursor: pointer; }
-        .search-container input { flex: 1; border: none; padding: 0 10px; font-size: 14px; outline: none; }
-        .search-icon { background: var(--amz-orange); width: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 18px; }
+        .nav-tools { display: flex; color: white; gap: 20px; font-size: 12px; margin-left: 10px; }
+        .nav-tools b { font-size: 14px; display: block; }
 
-        .nav-right { display: flex; color: white; gap: 15px; align-items: center; font-size: 12px; }
-        .nav-item b { font-size: 14px; display: block; }
-
-        /* --- Secondary Nav Belt --- */
-        .nav-belt { background: var(--amz-navy); height: 39px; color: white; display: flex; align-items: center; padding: 0 15px; gap: 15px; font-size: 13px; border-bottom: 1px solid #37475a; }
-        .nav-belt a { color: white; text-decoration: none; }
-
-        /* --- Main Content Layout --- */
-        .container { max-width: 1500px; margin: 0 auto; padding: 15px; display: flex; gap: 15px; }
+        /* Layout Grid */
+        .container { max-width: 1500px; margin: 0 auto; padding: 20px; display: flex; gap: 20px; }
         
-        /* Sidebar: Matching Screenshot List */
-        aside { width: 180px; flex-shrink: 0; background: white; padding: 15px; border-radius: 4px; border: 1px solid #ddd; height: fit-content; }
-        aside h4 { font-size: 12px; margin-bottom: 10px; }
+        /* Sidebar Like Photo */
+        aside { width: 220px; background: white; padding: 15px; border-radius: 4px; border: 1px solid #ddd; height: fit-content; }
+        aside h4 { font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         aside ul { list-style: none; }
-        aside li { font-size: 11px; margin-bottom: 6px; color: #444; cursor: pointer; }
-        aside .active { color: #c45500; font-weight: bold; }
+        aside li { font-size: 13px; padding: 5px 0; color: #444; cursor: pointer; }
+        aside li:hover { color: #c45500; }
 
-        /* Product Grid Section */
-        main { flex: 1; }
-        .grid-header { font-size: 11px; margin-bottom: 10px; color: #555; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+        /* Product Cards */
+        main { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
         .card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 4px; display: flex; flex-direction: column; }
         
-        .img-box { height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        .img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .img-container { height: 200px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .img-container img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-        .p-name { font-size: 13px; color: #007185; margin-bottom: 5px; font-weight: 500; height: 32px; overflow: hidden; }
-        .p-rating { color: #ffa41c; font-size: 10px; margin-bottom: 8px; }
-        .p-rating span { color: #007185; margin-left: 5px; }
+        .p-name { font-size: 14px; font-weight: 500; color: #007185; margin-bottom: 5px; line-height: 1.3; height: 36px; overflow: hidden; }
+        .p-rating { color: #ffa41c; font-size: 12px; margin-bottom: 10px; }
 
-        /* Price Formatting: Ditto Screenshot */
-        .price-row { font-size: 24px; font-weight: 500; display: flex; align-items: flex-start; margin-bottom: 15px; }
-        .price-row .curr { font-size: 13px; position: relative; top: -10px; }
-        .price-row .amt { margin-right: 2px; }
+        .price { font-size: 28px; font-weight: 500; margin-bottom: 15px; display: flex; align-items: flex-start; }
+        .price span { font-size: 14px; margin-top: 5px; margin-right: 2px; }
 
-        /* Buttons: Exact color match */
-        .btn { width: 100%; padding: 8px; border-radius: 20px; border: 1px solid; cursor: pointer; font-size: 12px; margin-bottom: 8px; font-weight: 500; }
-        .btn-cart { background: var(--btn-yellow); border-color: #a88734; }
-        .btn-buy { background: var(--btn-orange); border-color: #ca7c1b; }
+        /* Original Buttons */
+        .btn { width: 100%; padding: 10px; border-radius: 20px; border: 1px solid; cursor: pointer; font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+        .btn-yellow { background: #ffd814; border-color: #a88734; }
+        .btn-orange { background: #ffa41c; border-color: #ca7c1b; }
 
-        /* --- Footer --- */
-        footer { background: var(--amz-navy); color: white; padding: 30px; margin-top: 30px; font-size: 11px; }
-        .f-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; max-width: 1200px; margin: 0 auto; }
-        .f-col h5 { margin-bottom: 10px; font-size: 12px; }
-        .f-col p { opacity: 0.8; margin-bottom: 5px; cursor: pointer; }
-
-        @media (max-width: 800px) {
-            aside { display: none; }
-            .grid { grid-template-columns: 1fr 1fr; }
-        }
+        /* Admin Trigger */
+        .admin-link { color: #555; font-size: 11px; margin-top: 20px; cursor: pointer; text-align: center; display: block; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="#" class="logo">G-SHOP</a>
-        <div class="search-container">
-            <button class="search-cat">All</button>
-            <input type="text" placeholder="Search G-SHOP...">
-            <button class="search-icon"><i class="fa fa-search"></i></button>
+        <div class="search-box">
+            <input type="text" placeholder="Search G-SHOP for High-End Electronics...">
+            <button class="search-btn"><i class="fa fa-search"></i></button>
         </div>
-        <div class="nav-right">
-            <div class="nav-item">Hello, Gurpreet<br><b>Account & Orders</b></div>
-            <div class="nav-item"><i class="fa fa-shopping-cart" style="font-size:24px;"></i> Cart</div>
+        <div class="nav-tools">
+            <div>Hello, Guru<br><b>Accounts</b></div>
+            <div><i class="fa fa-shopping-cart"></i><b>Cart</b></div>
         </div>
     </header>
-
-    <div class="nav-belt">
-        <a href="#">Electronics</a>
-        <a href="#">Gaming</a>
-        <a href="#">Kitchen</a>
-        <a href="#">Admin Access</a>
-    </div>
 
     <div class="container">
         <aside>
             <h4>Department</h4>
             <ul>
-                <li class="active">Electronics & Tech</li>
+                <li><b>Electronics</b></li>
+                <li>Gaming</li>
                 <li>Home Appliances</li>
-                <li>Sewing & Tools</li>
-                <li>Gaming Access</li>
-                <li>Accessories</li>
+                <li>Tools & Hardware</li>
+                <li>Smart Home</li>
             </ul>
         </aside>
 
         <main>
-            <div class="grid-header">Showing 1-4 of 4 results for "Premium"</div>
+            <div class="card">
+                <div class="img-container"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
+                <div class="p-name">Premium Full Body Massage Chair - Shiatsu Pro</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 4,900 reviews</div>
+                <div class="price"><span>$</span>3,499</div>
+                <button class="btn btn-yellow">Add to Cart</button>
+                <button class="btn btn-orange" onclick="alert('Order Sent to Guru930 Panel')">Buy Now</button>
+            </div>
 
-            <div class="grid">
-                <div class="card">
-                    <div class="img-box"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
-                    <div class="p-name">Pro Massage Chair X1 - Full Body Shiatsu</div>
-                    <div class="p-rating">⭐⭐⭐⭐⭐ <span>2,300 verified</span></div>
-                    <div class="price-row"><span class="curr">$</span><span class="amt">3,499</span>.00</div>
-                    <button class="btn btn-cart">Add to Cart</button>
-                    <button class="btn btn-buy">Buy Now</button>
-                </div>
+            <div class="card">
+                <div class="img-container"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
+                <div class="p-name">8K Quantum Smart TV - 75 inch Ultra HD</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 1,223 reviews</div>
+                <div class="price"><span>$</span>2,999</div>
+                <button class="btn btn-yellow">Add to Cart</button>
+                <button class="btn btn-orange">Buy Now</button>
+            </div>
 
-                <div class="card">
-                    <div class="img-box"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
-                    <div class="p-name">8K Quantum TV 75" Quantum Processor</div>
-                    <div class="p-rating">⭐⭐⭐⭐⭐ <span>1,223 verified</span></div>
-                    <div class="price-row"><span class="curr">$</span><span class="amt">2,999</span>.00</div>
-                    <button class="btn btn-cart">Add to Cart</button>
-                    <button class="btn btn-buy">Buy Now</button>
-                </div>
-
-                <div class="card">
-                    <div class="img-box"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
-                    <div class="p-name">High-End Gaming PC Tower RTX 4090</div>
-                    <div class="p-rating">⭐⭐⭐⭐⭐ <span>1,990 verified</span></div>
-                    <div class="price-row"><span class="curr">$</span><span class="amt">1,999</span>.00</div>
-                    <button class="btn btn-cart">Add to Cart</button>
-                    <button class="btn btn-buy">Buy Now</button>
-                </div>
-
-                <div class="card">
-                    <div class="img-box"><img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg"></div>
-                    <div class="p-name">Smart Fridge - French Door WiFi Double Cooling</div>
-                    <div class="p-rating">⭐⭐⭐⭐ <span>450 verified</span></div>
-                    <div class="price-row"><span class="curr">$</span><span class="amt">1,549</span>.00</div>
-                    <button class="btn btn-cart">Add to Cart</button>
-                    <button class="btn btn-buy">Buy Now</button>
-                </div>
-
+            <div class="card">
+                <div class="img-container"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
+                <div class="p-name">Gaming Desktop Tower - RTX 4090 Liquid Cooled</div>
+                <div class="p-rating">⭐⭐⭐⭐⭐ 2,500 reviews</div>
+                <div class="price"><span>$</span>1,999</div>
+                <button class="btn btn-yellow">Add to Cart</button>
+                <button class="btn btn-orange">Buy Now</button>
             </div>
         </main>
     </div>
 
-    <footer>
-        <div class="f-grid">
-            <div class="f-col"><h5>Get to Know Us</h5><p>About G-SHOP</p><p>Careers</p></div>
-            <div class="f-col"><h5>Let Us Help You</h5><p>Track Your Order</p><p>Help</p></div>
-        </div>
-    </footer>
+    <span class="admin-link" onclick="checkAdmin()">System Admin Access</span>
 
+    <script>
+        function checkAdmin() {
+            let p = prompt("Enter Access Key:");
+            if(p === "Guru930") {
+                alert("Welcome, Guru. Admin Engine Online.");
+            } else {
+                alert("Access Denied.");
+            }
+        }
+    </script>
 </body>
 </html>
