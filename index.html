@@ -3,157 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-SHOP | Premium Electronics</title>
+    <title>G-Shop | Electronics Department</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --amazon-blue: #232f3e; --amazon-orange: #febd69; --btn-orange: #f37021; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f3f3; margin: 0; }
+        :root { --gs-orange: #f37021; --gs-dark: #232f3e; --gs-light-bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: white; margin: 0; }
         
-        /* Navbar Styling */
-        .nav-main { background-color: white; border-bottom: 1px solid #ddd; }
-        .nav-belt { background-color: var(--amazon-blue); color: white; display: flex; gap: 20px; padding: 8px 20px; font-size: 13px; overflow-x: auto; }
+        /* Header & Search Bar */
+        .header-main { background-color: white; border-bottom: 1px solid #ddd; padding: 10px 20px; }
+        .search-container { border: 2px solid var(--gs-orange); border-radius: 6px; overflow: hidden; display: flex; flex: 1; max-width: 800px; }
         
-        /* Hero Banner */
-        .hero-section { 
-            background: linear-gradient(to right, rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.1)), 
-                        url('https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 450px;
-            display: flex;
-            align-items: center;
-            color: white;
-            padding: 0 50px;
-        }
+        /* Nav Belt */
+        .nav-belt { background-color: var(--gs-dark); color: white; display: flex; gap: 20px; padding: 8px 20px; font-size: 12px; }
+        
+        /* Sidebar */
+        .sidebar { width: 220px; padding: 20px; border-right: 1px solid #eee; height: fit-content; }
+        .sidebar h3 { font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+        .sidebar ul { list-style: none; padding: 0; font-size: 13px; color: #555; }
+        .sidebar li { margin-bottom: 8px; cursor: pointer; }
+        .sidebar li:hover { color: var(--gs-orange); }
+        .sidebar li.active { font-weight: bold; color: var(--gs-orange); }
 
-        /* Category Icons */
-        .category-item { background: white; border-radius: 8px; padding: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; width: 150px; }
-        .category-item:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: translateY(-3px); }
-        .category-icon { font-size: 30px; color: #444; margin-bottom: 10px; }
-
-        /* Trust Badges */
-        .trust-section { background: white; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 40px 20px; margin-top: 30px; }
+        /* Product Cards */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .card { border: 1px solid #eee; padding: 15px; border-radius: 4px; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .card img { height: 180px; object-fit: contain; margin-bottom: 15px; }
+        .tag { font-size: 10px; font-weight: bold; color: white; padding: 2px 6px; border-radius: 2px; width: fit-content; margin-bottom: 5px; }
+        .tag-premium { background-color: #d48b11; }
+        .tag-bestseller { background-color: #c45500; }
         
-        /* Admin Hidden Logic */
-        .admin-link { color: #febd69; font-weight: bold; cursor: pointer; }
+        /* Buttons */
+        .btn-cart { background-color: #f0c14b; border: 1px solid #a88734; color: #111; padding: 8px; border-radius: 3px; font-size: 12px; font-weight: 500; margin-bottom: 8px; }
+        .btn-buy { background-color: #ed9220; border: 1px solid #ca7605; color: #111; padding: 8px; border-radius: 3px; font-size: 12px; font-weight: 500; }
+        
+        /* Footer */
+        .footer-dark { background-color: var(--gs-dark); color: white; padding: 40px 20px; font-size: 12px; margin-top: 50px; }
+        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .footer-back-to-top { background-color: #37475a; color: white; text-align: center; padding: 15px; font-size: 13px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<header class="nav-main px-6 py-4 flex items-center justify-between gap-6 sticky top-0 z-50">
-    <div class="text-3xl font-black text-orange-500 tracking-tighter cursor-pointer">G-Shop</div>
-    <div class="flex-1 max-w-3xl flex border-2 border-orange-500 rounded-lg overflow-hidden shadow-sm">
+<header class="header-main flex items-center justify-between">
+    <div class="text-3xl font-black text-orange-500 tracking-tighter" style="color: #f37021;">G-Shop</div>
+    <div class="search-container">
         <select class="bg-gray-100 p-2 text-xs border-r outline-none"><option>All</option></select>
         <input type="text" placeholder="Search G-Shop..." class="flex-1 p-2 outline-none text-sm">
-        <button class="bg-orange-500 text-white px-8 transition hover:bg-orange-600"><i class="fas fa-search"></i></button>
+        <button class="bg-orange-500 text-white px-6" style="background-color: #f37021;"><i class="fas fa-search"></i></button>
     </div>
-    <div class="flex gap-8 text-sm text-gray-700">
-        <div class="cursor-pointer">Hello, Guest<br><b>Account & Lists</b></div>
-        <div class="cursor-pointer">Returns<br><b>& Orders</b></div>
-        <div class="relative pt-2 cursor-pointer text-2xl text-gray-800"><i class="fas fa-shopping-cart"></i><span class="absolute top-0 right-[-10px] bg-orange-500 text-white text-xs px-1.5 rounded-full font-bold">0</span></div>
+    <div class="flex gap-6 text-xs text-gray-700 ml-4">
+        <div>Hello, Gurpreet<br><b class="text-sm">Account & Lists</b></div>
+        <div>Returns<br><b class="text-sm">& Orders</b></div>
+        <div class="text-2xl relative"><i class="fas fa-shopping-cart text-gray-800"></i><span class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded-full">0</span><span class="text-sm font-bold ml-1">Cart</span></div>
     </div>
 </header>
 
 <nav class="nav-belt">
-    <a href="#" class="hover:text-orange-300">All Products</a>
-    <a href="#" class="hover:text-orange-300">Audio</a>
-    <a href="#" class="hover:text-orange-300">Wearables</a>
-    <a href="#" class="hover:text-orange-300">Gaming</a>
-    <a href="#" class="hover:text-orange-300">Electronics</a>
-    <a href="#" class="hover:text-orange-300">Smart Home</a>
-    <a href="#" class="hover:text-orange-300 font-bold text-orange-400" onclick="openAdmin()">Admin Panel</a>
+    <span>All Products</span>
+    <span>Audio</span>
+    <span>Wearables</span>
+    <span>Gaming</span>
+    <span style="color: #febd69; font-weight: bold;">Electronics</span>
+    <span>Smart Home</span>
+    <span>Automotive</span>
+    <span>Track Order</span>
+    <span style="color: #febd69; cursor: pointer;" onclick="prompt('Admin Password:')">Admin Panel</span>
 </nav>
 
-<section class="hero-section">
-    <div class="max-w-xl">
-        <span class="bg-orange-600 text-white px-3 py-1 text-xs font-bold rounded">Spend $100+ and save instantly</span>
-        <h1 class="text-6xl font-bold mt-4 leading-tight">Premium Electronics.<br><span class="text-orange-400 uppercase">Unbeatable Prices.</span></h1>
-        <p class="mt-6 text-lg text-gray-200">Top-rated gear, delivered fast to USA & Canada. Spend over $100 and get <span class="font-bold text-white">$30 off</span>. Spend over $200 and save <span class="font-bold text-white">$50</span> — automatically.</p>
-        <div class="flex gap-4 mt-8">
-            <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg">Shop All Products →</button>
-            <button class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full shadow-lg">Track My Orders</button>
-        </div>
-    </div>
-</section>
+<div class="px-6 py-2 text-[10px] text-gray-500">Home > All Products</div>
 
-<div class="bg-orange-50 py-3 flex justify-center gap-12 text-sm font-medium border-b border-orange-100">
-    <span>🏷️ Spend $100+ — Save $30 instantly at checkout</span>
-    <span class="text-gray-300">|</span>
-    <span>🏷️ Spend $200+ — Save $50 instantly at checkout</span>
+<div class="flex max-w-[1400px] mx-auto">
+    
+    <aside class="sidebar">
+        <h3>Department</h3>
+        <ul>
+            <li>All</li>
+            <li>Audio</li>
+            <li>Wearables</li>
+            <li>Gaming</li>
+            <li class="active">Electronics</li>
+            <li>Smart Home</li>
+            <li>Automotive</li>
+            <li>Accessories</li>
+        </ul>
+    </aside>
+
+    <main class="flex-1">
+        <div class="p-4 border-b text-sm text-gray-600 flex justify-between items-center">
+            <span>1-9 of 9 results in <b>Electronics</b></span>
+            <span class="text-xs text-blue-600 cursor-pointer">Clear filters</span>
+        </div>
+
+        <div class="product-grid">
+            
+            <div class="card">
+                <span class="tag tag-premium">PREMIUM</span>
+                <img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">Pro Massage Chair X1</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 2,847</div>
+                <div class="text-xl font-bold mb-4">$3,499.<span class="text-xs align-top">00</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <span class="tag tag-bestseller" style="background-color: #c45500;">TOP SELLER</span>
+                <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">8K Quantum TV 75"</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 1,223</div>
+                <div class="text-xl font-bold mb-4">$2,999.<span class="text-xs align-top">00</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">High-End Gaming PC Tower</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 1,990</div>
+                <div class="text-xl font-bold mb-4">$1,999.<span class="text-xs align-top">00</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <span class="tag" style="background-color: #ca7605;">LIMITED</span>
+                <img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">Drone Pro Controller</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐ 987</div>
+                <div class="text-xl font-bold mb-4">$1,199.<span class="text-xs align-top">00</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">Smart Home Generator</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 4,521</div>
+                <div class="text-xl font-bold mb-4">$2,499.<span class="text-xs align-top">00</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/61X508v81HL._AC_SL1500_.jpg">
+                <h4 class="text-sm font-medium h-10 overflow-hidden">Wireless Charging Pad Trio</h4>
+                <div class="text-xs text-gray-500 mb-1">⭐⭐⭐⭐⭐ 4,571</div>
+                <div class="text-xl font-bold mb-4">$1,154.<span class="text-xs align-top">99</span></div>
+                <button class="btn-cart">Add to Cart</button>
+                <button class="btn-buy">Buy Now</button>
+            </div>
+
+        </div>
+    </main>
 </div>
 
-<section class="max-w-7xl mx-auto py-12 px-4">
-    <h2 class="text-xl font-bold mb-8">Shop by Category</h2>
-    <div class="flex flex-wrap justify-center gap-6">
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-headphones"></i></div>
-            <p class="text-sm font-bold">Audio</p>
-        </div>
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-clock"></i></div>
-            <p class="text-sm font-bold">Wearables</p>
-        </div>
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-gamepad"></i></div>
-            <p class="text-sm font-bold">Gaming</p>
-        </div>
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
-            <p class="text-sm font-bold">Electronics</p>
-        </div>
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-home"></i></div>
-            <p class="text-sm font-bold">Smart Home</p>
-        </div>
-        <div class="category-item cursor-pointer">
-            <div class="category-icon"><i class="fas fa-car"></i></div>
-            <p class="text-sm font-bold">Automotive</p>
-        </div>
-    </div>
-</section>
-
-<section class="trust-section">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div class="footer-back-to-top">Back to top</div>
+<footer class="footer-dark">
+    <div class="footer-grid">
         <div>
-            <i class="fas fa-truck-moving text-3xl text-orange-600 mb-4"></i>
-            <h3 class="font-bold text-lg">Free Fast Shipping</h3>
-            <p class="text-gray-500 text-sm mt-2">Free delivery across USA & Canada on all orders.</p>
+            <h4 class="font-bold mb-4">Get to Know Us</h4>
+            <p>About G-Shop</p><p>Careers</p><p>Press Center</p>
         </div>
         <div>
-            <i class="fas fa-shield-alt text-3xl text-orange-600 mb-4"></i>
-            <h3 class="font-bold text-lg">Verified Authentic</h3>
-            <p class="text-gray-500 text-sm mt-2">Every item is authenticated before it ships to you.</p>
+            <h4 class="font-bold mb-4">Make Money with Us</h4>
+            <p>Sell on G-Shop</p><p>Affiliate Program</p>
         </div>
         <div>
-            <i class="fas fa-undo-alt text-3xl text-orange-600 mb-4"></i>
-            <h3 class="font-bold text-lg">Easy Returns</h3>
-            <p class="text-gray-500 text-sm mt-2">30-day hassle-free returns on all purchases.</p>
+            <h4 class="font-bold mb-4">Payment Products</h4>
+            <p>Business Card</p><p>Shop with Points</p>
+        </div>
+        <div>
+            <h4 class="font-bold mb-4">Let Us Help You</h4>
+            <p>Track Order</p><p>Shipping & Rates</p><p>Returns</p>
         </div>
     </div>
-</section>
-
-<footer class="bg-slate-800 text-white py-12 px-6 mt-12">
-    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-slate-700 pb-8">
-        <div><h4 class="font-bold mb-4">Get to Know Us</h4><ul class="text-sm text-slate-400 space-y-2"><li>About G-Shop</li><li>Careers</li><li>Press Center</li></ul></div>
-        <div><h4 class="font-bold mb-4">Make Money with Us</h4><ul class="text-sm text-slate-400 space-y-2"><li>Sell on G-Shop</li><li>Affiliate Program</li></ul></div>
-        <div><h4 class="font-bold mb-4">Payment Products</h4><ul class="text-sm text-slate-400 space-y-2"><li>G-Shop Business Card</li><li>Reload Your Balance</li></ul></div>
-        <div><h4 class="font-bold mb-4">Let Us Help You</h4><ul class="text-sm text-slate-400 space-y-2"><li>Track My Order</li><li>Shipping Rates</li><li>Help</li></ul></div>
+    <div class="text-center mt-12 opacity-50 border-t border-gray-600 pt-8">
+        © 2026 G-SHOP International. All Rights Reserved.
     </div>
-    <p class="text-center text-xs text-slate-500 mt-8">© 2026 G-SHOP International. All Rights Reserved. USA Market Division.</p>
 </footer>
-
-<script>
-    function openAdmin() {
-        let pass = prompt("Enter Secret Admin Password:");
-        if (pass === "GShop@930") { // Aapka secret password
-            alert("Welcome Boss! Opening Profit Dashboard...");
-            // Yahan hum tera dashboard link karenge kal
-        } else {
-            alert("Unauthorized Access!");
-        }
-    }
-</script>
 
 </body>
 </html>
+
