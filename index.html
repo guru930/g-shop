@@ -3,65 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Shop | Premium Electronics</title>
+    <title>G-Shop Dashboard | USA Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS Palette - Exact Amazon Colors */
+        /* Exact Colors from your latest Dashboard Screenshot */
         :root {
-            --amz-dark: #131921;
-            --amz-navy: #232f3e;
-            --amz-orange: #febd69;
-            --amz-bg: #eaeded;
-            --btn-yellow: #ffd814;
-            --btn-orange: #ffa41c;
+            --gs-orange: #f37021;
+            --gs-dark: #232f3e;
+            --gs-card-bg: #1a1a1a;
+            --gs-text-gray: #a0a0a0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background-color: var(--amz-bg); color: #0f1111; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #000; color: white; padding: 10px; }
 
-        /* Top Header Area */
-        header { background-color: var(--amz-dark); padding: 10px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 1000; }
-        .logo { color: white; font-size: 22px; font-weight: 800; cursor: pointer; }
-        .logo span { color: var(--amz-orange); }
+        /* Top Header */
+        header { background: #fff; padding: 10px 20px; border-radius: 15px 15px 0 0; display: flex; align-items: center; justify-content: space-between; }
+        .logo { color: #f37021; font-size: 24px; font-weight: 800; }
+        .search-bar { flex: 1; margin: 0 40px; position: relative; }
+        .search-bar input { width: 100%; padding: 8px 15px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
+        .search-bar i { position: absolute; right: 15px; top: 10px; color: #666; }
+        .header-icons { color: #333; display: flex; gap: 20px; align-items: center; }
 
-        /* Search Bar */
-        .search-container { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
-        .search-container select { background: #f3f3f3; border: none; padding: 0 10px; font-size: 12px; cursor: pointer; border-right: 1px solid #ddd; }
-        .search-container input { flex: 1; border: none; padding: 0 15px; outline: none; font-size: 14px; }
-        .search-btn { background: var(--amz-orange); border: none; width: 45px; cursor: pointer; font-size: 18px; }
+        /* Sub Nav */
+        .sub-nav { background: var(--gs-orange); padding: 8px 20px; display: flex; gap: 20px; font-size: 13px; font-weight: 600; }
+        .sub-nav span { cursor: pointer; }
 
-        /* User & Cart Icons */
-        .nav-tools { display: flex; align-items: center; gap: 20px; color: white; margin-left: 10px; }
-        .nav-item { font-size: 12px; cursor: pointer; }
-        .nav-item b { font-size: 14px; display: block; }
-        .cart-box { position: relative; font-size: 28px; cursor: pointer; }
-        #cart-count { position: absolute; top: -5px; right: -8px; background: #f08804; color: white; font-size: 12px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        /* Main Dashboard Grid Layout */
+        .dashboard-container { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 15px; margin-top: 15px; }
 
-        /* Navigation Belt */
-        .nav-belt { background-color: var(--amz-navy); color: white; padding: 8px 20px; display: flex; gap: 20px; font-size: 14px; overflow-x: auto; white-space: nowrap; }
-        .nav-belt a { color: white; text-decoration: none; opacity: 0.9; }
-        .nav-belt a:hover { border-bottom: 1px solid white; }
-
-        /* Main Content Layout */
-        .main-layout { display: flex; max-width: 1500px; margin: 0 auto; padding: 20px; gap: 20px; }
+        /* Big Hero Card (Massage Chair) */
+        .hero-card { grid-row: span 2; background: url('https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg') center/cover; position: relative; border-radius: 10px; min-height: 400px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .hero-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); border-radius: 10px; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-content h1 { font-size: 32px; margin-bottom: 10px; }
         
-        /* Sidebar */
-        aside { width: 240px; flex-shrink: 0; background: transparent; }
-        aside h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-        aside ul { list-style: none; margin-bottom: 20px; }
-        aside li { font-size: 13px; margin-bottom: 8px; cursor: pointer; }
-        aside li:hover { color: #c45500; text-decoration: underline; }
-        aside .active-cat { color: #c45500; font-weight: 700; }
+        /* Smaller Category Cards */
+        .cat-card { background: var(--gs-card-bg); border-radius: 10px; padding: 20px; position: relative; overflow: hidden; display: flex; justify-content: space-between; align-items: center; }
+        .cat-card img { width: 100px; height: 100px; object-fit: contain; }
+        .cat-info h3 { font-size: 18px; margin-bottom: 5px; }
+        .cat-info p { color: var(--gs-text-gray); font-size: 12px; margin-bottom: 15px; }
 
-        /* Product Section */
-        .content-section { flex: 1; }
-        .results-header { background: white; padding: 12px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; font-size: 14px; }
-        
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .card { background: white; border: 1px solid #ddd; padding: 15px; display: flex; flex-direction: column; transition: 0.2s; position: relative; }
-        .card:hover { border-color: var(--amz-orange); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        
-        .badge { position: absolute; top: 0; left: 0; background: #c45500; color: white; padding: 2px 8px; font-size: 11px; font-weight: bold; }
-        .img-wrap { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        .img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain;
-                       
+        /* Buttons */
+        .btn-shop { background: var(--gs-orange); border: none; color: white; padding: 6px 15px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+
+        /* Info Boxes (Bottom) */
+        .info-bar { background: #111; margin-top: 15px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        .info-item { display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--gs-text-gray); }
+        .info-item b { color: white; margin-bottom: 5px; }
+
+        /* Responsive Fix */
+        @media (max-width: 900px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+            .hero-card { grid-row: span 1; min-height: 250px; }
+            .info-bar { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">G-SHOP</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products, brands and more">
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="header-icons">
+            <i class="fa fa-user"></i>
+            <i class="fa fa-shopping-cart"></i>
+        </div>
+    </header>
+
+    <nav class="sub-nav">
+        <span>Electronics <i class="fa fa-chevron-down"></i></span>
+        <span>Baby Care</span>
+        <span>Pet Elite</span>
+        <span>Grocery Luxe</span>
+        <span>Home Refresh</span>
+        <span>About Us</span>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="hero-card">
+            <div class="hero-content">
+                <p style="color:var(--gs-orange)">Electronics Exclusive</p>
+                <h1>$4,500+ Luxury<br>Massage Chair</h1>
+                <button class="btn-shop">Shop Now</button>
+            </div>
+        </div>
+
+        <div class="cat-card">
+            <div class="cat-info">
+                <h3>Electronics</h3>
+                <p>75" 8K QLED<br>Smart TV</p>
+                <button class="btn-shop">Shop Now</button>
+            </div>
+            <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg">
+        </div>
+
+        <div class="cat-card">
+            <div class="cat-info">
+                <h3>Grocery Luxe</h3>
+                <p>Premium organic<br>items for health</p>
+                <button class="btn-shop">Shop Now</button>
+            </div>
+            <img src="https://m.media-amazon.com/images/I/81t62l7a9AL._AC_SL1500_.jpg">
+        </div>
+
+        <div class="cat-card">
+            <div class="cat-info">
+                <h3>Baby Care</h3>
+                <p>Advanced stroller<br>for comfort</p>
+                <button class="btn-shop">Shop Now</button>
+            </div>
+            <img src="https://m.media-amazon.com/images/I/71u9S+yO6AL._AC_SL1500_.jpg">
+        </div>
+
+        <div class="cat-card">
+            <div class="cat-info">
+                <h3>Pet Elite</h3>
+                <div style="height:40px"></div>
+                <button class="btn-shop">Shop Now</button>
+            </div>
+            <img src="https://m.media-amazon.com/images/I/61S+mXk7h5L._AC_SL1500_.jpg">
+        </div>
+    </div>
+
+    <div class="info-bar">
+        <div class="info-item">
+            <b>Customer Service</b>
+            <span>Shipping</span>
+            <span>Track Order</span>
+            <span>Contact</span>
+        </div>
+        <div class="info-item">
+            <b>Information</b>
+            <span>About Us</span>
+            <span>Privacy Policy</span>
+            <span>Refund Policy</span>
+        </div>
+        <div class="info-item">
+            <b>Contact</b>
+            <span><i class="fa fa-phone"></i> +1 (800) 123-4567</span>
+            <span><i class="fa fa-map-marker"></i> Texas, USA</span>
+            <div style="margin-top:10px">
+                <img src="https://img.icons8.com/color/48/visa.png" width="30">
+                <img src="https://img.icons8.com/color/48/mastercard.png" width="30">
+                <img src="https://img.icons8.com/color/48/paypal.png" width="30">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
