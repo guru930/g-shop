@@ -1,168 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Shop | Electronics Marketplace</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --amz-dark: #131921;
-            --amz-navy: #232f3e;
-            --amz-orange: #febd69;
-            --btn-orange: #ffa41c;
-            --btn-yellow: #ffd814;
-            --bg: #eaeded;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-Shop Premium Ecommerce</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: var(--bg); color: #0f1111; }
+    body {
+      background: #f5f5f5;
+      color: #111;
+    }
 
-        /* --- Header with Orange Logo Box --- */
-        header { background: var(--amz-dark); padding: 10px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 1000; }
-        
-        .logo-container { display: flex; align-items: center; gap: 5px; text-decoration: none; }
-        .logo-box { background: #ff9900; color: white; padding: 2px 8px; border-radius: 3px; font-weight: 900; font-size: 22px; }
-        .logo-text { color: white; font-size: 22px; font-weight: bold; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .search-bar { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; margin: 0 10px; }
-        .search-bar input { flex: 1; border: none; padding: 0 15px; font-size: 14px; outline: none; }
-        .search-btn { background: var(--btn-orange); border: none; width: 45px; cursor: pointer; font-size: 18px; }
+    .top-header {
+      background: linear-gradient(to right, #0a1325, #101d35);
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        .nav-right { display: flex; color: white; gap: 15px; font-size: 12px; align-items: center; }
-        .nav-right b { display: block; font-size: 14px; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 26px;
+      font-weight: 800;
+    }
 
-        /* --- Navy Category Bar --- */
-        .nav-belt { background: var(--amz-navy); padding: 0 20px; display: flex; align-items: center; gap: 15px; height: 39px; font-size: 13px; }
-        .nav-belt a { color: white; text-decoration: none; padding: 5px; }
-        .nav-belt .active { border-bottom: 2px solid #ff9900; }
-        .nav-belt .track { color: #82d8ff; }
-        .nav-belt .admin { color: #febd69; font-weight: bold; cursor: pointer; }
+    .logo-box {
+      width: 42px;
+      height: 42px;
+      background: #ff9800;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+    }
 
-        /* --- Layout Container --- */
-        .container { max-width: 1500px; margin: 0 auto; padding: 20px; display: flex; gap: 20px; }
+    .search-area {
+      flex: 1;
+      display: flex;
+      max-width: 700px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      min-width: 280px;
+    }
 
-        /* Sidebar */
-        aside { width: 200px; background: white; padding: 15px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: fit-content; }
-        aside h4 { font-size: 14px; margin-bottom: 10px; }
-        aside ul { list-style: none; }
-        aside li { font-size: 13px; padding: 6px 0; color: #444; cursor: pointer; }
-        aside .active-cat { color: #c45500; font-weight: bold; }
+    .search-area select,
+    .search-area input {
+      border: none;
+      outline: none;
+      padding: 14px;
+      font-size: 15px;
+    }
 
-        /* Product Grid (Exact 3x3 Match) */
-        main { flex: 1; }
-        .results-bar { background: white; padding: 10px 15px; border-radius: 4px; margin-bottom: 15px; font-size: 13px; border: 1px solid #ddd; }
-        
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 4px; position: relative; transition: 0.2s; }
-        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .search-area select {
+      background: #f3f3f3;
+      width: 120px;
+    }
 
-        .badge { position: absolute; top: 10px; left: 10px; background: #e67e22; color: white; font-size: 9px; font-weight: bold; padding: 2px 6px; border-radius: 2px; }
+    .search-area input {
+      flex: 1;
+    }
 
-        .p-img { height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        .p-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
+    .search-btn {
+      width: 65px;
+      border: none;
+      background: #ff9800;
+      color: black;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        .p-title { font-size: 15px; font-weight: 600; color: #007185; margin-bottom: 5px; height: 40px; overflow: hidden; }
-        .p-stars { color: #ffa41c; font-size: 11px; margin-bottom: 8px; }
-        .p-price { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-        .p-price span { font-size: 13px; vertical-align: top; }
+    .header-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-        .btn { width: 100%; padding: 10px; border-radius: 20px; border: 1px solid; cursor: pointer; font-size: 12px; font-weight: 500; margin-bottom: 8px; }
-        .btn-cart { background: var(--btn-yellow); border-color: #a88734; }
-        .btn-buy { background: var(--btn-orange); border-color: #ca7c1b; }
+    .menu-bar {
+      background: #13233e;
+      color: white;
+      display: flex;
+      gap: 24px;
+      padding: 14px 24px;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 500;
+    }
 
-        /* Footer */
-        footer { background: var(--amz-navy); color: white; padding: 40px 20px; margin-top: 40px; }
-        .f-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; font-size: 12px; }
-    </style>
+    .menu-bar a.active {
+      color: #ff9800;
+      border-bottom: 3px solid #ff9800;
+      padding-bottom: 8px;
+    }
+
+    .menu-bar a.track {
+      color: #59a7ff;
+    }
+
+    .menu-bar a.admin {
+      color: #ffb300;
+    }
+
+    .container {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      padding: 12px 0;
+      color: #444;
+      font-weight: 500;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sidebar li.active {
+      color: #ff9800;
+      font-weight: 700;
+    }
+
+    .main-content {
+      flex: 1;
+    }
+
+    .breadcrumbs {
+      color: #777;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .category-search {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      margin-bottom: 18px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+
+    .result-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .clear-btn {
+      color: #59a7ff;
+      cursor: pointer;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff9800;
+      color: black;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      margin-bottom: 18px;
+    }
+
+    .product-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: #ff9800;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .cart-btn {
+      background: #ff9800;
+      color: black;
+    }
+
+    .buy-btn {
+      background: #ffd600;
+      color: black;
+    }
+
+    .back-top {
+      margin-top: 50px;
+      background: #13233e;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      font-weight: 500;
+    }
+
+    footer {
+      background: linear-gradient(to right, #081120, #12233d);
+      color: white;
+      padding: 50px 24px 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    footer h4 {
+      margin-bottom: 18px;
+      font-size: 18px;
+    }
+
+    footer p {
+      color: #ccc;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    .replit {
+      background: rgba(255,255,255,0.08);
+      padding: 10px 16px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .top-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .header-links {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo-container">
-            <div class="logo-box">G</div>
-            <div class="logo-text">G-Shop</div>
-        </a>
-        <div class="search-bar">
-            <input type="text" placeholder="Search G-Shop...">
-            <button class="search-btn"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="nav-right">
-            <div>Hello, Gurpreet<br><b>Account</b></div>
-            <div style="font-size:20px;"><i class="fa fa-shopping-cart"></i></div>
-        </div>
-    </header>
-
-    <div class="nav-belt">
-        <a href="#">All Products</a>
-        <a href="#">Audio</a>
-        <a href="#">Wearables</a>
-        <a href="#">Gaming</a>
-        <a href="#" class="active">Electronics</a>
-        <a href="#">Smart Home</a>
-        <a href="#" class="track">Track Order</a>
-        <a href="#" class="admin" onclick="openAdmin()">Admin Panel</a>
+  <header class="top-header">
+    <div class="logo">
+      <div class="logo-box">G</div>
+      G-Shop
     </div>
 
-    <div class="container">
-        <aside>
-            <h4>Department</h4>
-            <ul>
-                <li>All</li>
-                <li>Audio</li>
-                <li>Wearables</li>
-                <li>Gaming</li>
-                <li class="active-cat">Electronics</li>
-                <li>Smart Home</li>
-            </ul>
-        </aside>
-
-        <main>
-            <div class="results-bar">1-9 of 9 results in <b>Electronics</b></div>
-            <div class="grid" id="productGrid"></div>
-        </main>
+    <div class="search-area">
+      <select>
+        <option>All</option>
+      </select>
+      <input type="text" placeholder="Search G-Shop...">
+      <button class="search-btn">🔍</button>
     </div>
 
-    <footer>
-        <div class="f-grid">
-            <div><h5>Get to Know Us</h5><p>About G-Shop</p></div>
-            <div><h5>Make Money</h5><p>Sell Products</p></div>
-            <div><h5>Help Center</h5><p>Returns</p></div>
-            <div><h5>Admin</h5><p>Guru930 Engine</p></div>
+    <div class="header-links">
+      <div>Hello, Account</div>
+      <div>Returns & Orders</div>
+      <div>🛒 Cart</div>
+    </div>
+  </header>
+
+  <nav class="menu-bar">
+    <a href="#">All Products</a>
+    <a href="#">Audio</a>
+    <a href="#">Wearables</a>
+    <a href="#">Gaming</a>
+    <a href="#" class="active">Electronics</a>
+    <a href="#">Smart Home</a>
+    <a href="#">Automotive</a>
+    <a href="#" class="track">Track Order</a>
+    <a href="#" class="admin">Admin Panel</a>
+  </nav>
+
+  <div class="container">
+
+    <aside class="sidebar">
+      <h3>Department</h3>
+      <ul>
+        <li>All</li>
+        <li>Audio</li>
+        <li>Wearables</li>
+        <li>Gaming</li>
+        <li class="active">▶ Electronics</li>
+        <li>Smart Home</li>
+        <li>Automotive</li>
+        <li>Accessories</li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="breadcrumbs">Home > All Products</div>
+
+      <input class="category-search" type="text" placeholder="Search in Electronics...">
+
+      <div class="result-bar">
+        <div>1-9 of 9 results in <strong>Electronics</strong></div>
+        <div class="clear-btn">Clear filters</div>
+      </div>
+
+      <section class="products-grid">
+
+        <div class="product-card">
+          <div class="badge">PREMIUM</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=1200&auto=format&fit=crop" alt="Massage Chair">
+          <div class="product-title">Pro Massage Chair X1</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 2,347</div>
+          <div class="price">$3,499.00</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
         </div>
-    </footer>
 
-    <script>
-        const products = [
-            { n: "Pro Massage Chair X1", p: "3,499", b: "PREMIUM", i: "https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg" },
-            { n: "8K Quantum TV 75\"", p: "2,999", b: "TOP SELLER", i: "https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg" },
-            { n: "High-End Gaming PC Tower", p: "1,999", b: "LIMITED", i: "https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg" },
-            { n: "Drone Pro Controller", p: "1,199", b: "NEW", i: "https://m.media-amazon.com/images/I/61mI-8-3JML._AC_SL1500_.jpg" },
-            { n: "Smart Home Generator", p: "2,499", b: "TOP SELLER", i: "https://m.media-amazon.com/images/I/81t62l7a9AL._AC_SL1500_.jpg" },
-            { n: "Wireless Charging Pad Trio", p: "1,154", b: "BEST VALUE", i: "https://m.media-amazon.com/images/I/61k9i9y+Q7L._AC_SL1500_.jpg" },
-            { n: "Holographic Projector", p: "4,999", b: "PREMIUM", i: "https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg" },
-            { n: "Mechanical Gaming Keyboard", p: "1,099", b: "BEST VALUE", i: "https://m.media-amazon.com/images/I/61mI-8-3JML._AC_SL1500_.jpg" },
-            { n: "Pro Security Camera Kit", p: "1,474", b: "LIMITED", i: "https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg" }
-        ];
+        <div class="product-card">
+          <div class="badge">TOP SELLER</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1200&auto=format&fit=crop" alt="TV">
+          <div class="product-title">8K Quantum TV 75”</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 1,223</div>
+          <div class="price">$2,999.00</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
+        </div>
 
-        const grid = document.getElementById('productGrid');
-        products.forEach(item => {
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="badge">${item.b}</div>
-                    <div class="p-img"><img src="${item.i}"></div>
-                    <div class="p-title">${item.n}</div>
-                    <div class="p-stars">⭐⭐⭐⭐⭐ 1,476</div>
-                    <div class="p-price"><span>$</span>${item.p}.00</div>
-                    <button class="btn btn-cart">Add to Cart</button>
-                    <button class="btn btn-buy">Buy Now</button>
-                </div>`;
-        });
+        <div class="product-card">
+          <div class="badge">BEST VALUE</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1200&auto=format&fit=crop" alt="Gaming PC">
+          <div class="product-title">High-End Gaming PC Tower</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 1,990</div>
+          <div class="price">$1,999.00</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
+        </div>
 
-        function openAdmin() {
-            if(prompt("Enter Password:") === "Guru930") alert("G-Shop Admin Active.");
-            else alert("Wrong Password.");
-        }
-    </script>
+        <div class="product-card">
+          <div class="badge">LIMITED</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop" alt="Controller">
+          <div class="product-title">Drone Pro Controller</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 987</div>
+          <div class="price">$1,199.00</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
+        </div>
+
+        <div class="product-card">
+          <div class="badge">POWER</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1581093458791-9d09be94e71d?q=80&w=1200&auto=format&fit=crop" alt="Generator">
+          <div class="product-title">Smart Home Generator</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 4,521</div>
+          <div class="price">$2,499.00</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
+        </div>
+
+        <div class="product-card">
+          <div class="badge">NEW</div>
+          <img class="product-image" src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?q=80&w=1200&auto=format&fit=crop" alt="Wireless Charger">
+          <div class="product-title">Wireless Charging Pad Trio</div>
+          <div class="rating">⭐⭐⭐⭐⭐ 4,577</div>
+          <div class="price">$1,154.99</div>
+          <button class="btn cart-btn">🛒 Add to Cart</button>
+          <button class="btn buy-btn">⚡ Buy Now</button>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <div class="back-top">Back to top</div>
+
+  <footer>
+    <div class="footer-grid">
+
+      <div>
+        <h4>Get to Know Us</h4>
+        <p>About G-Shop</p>
+        <p>Careers</p>
+        <p>Press Center</p>
+      </div>
+
+      <div>
+        <h4>Make Money with Us</h4>
+        <p>Sell on G-Shop</p>
+        <p>Affiliate Program</p>
+        <p>Advertise Your Products</p>
+      </div>
+
+      <div>
+        <h4>Payment Products</h4>
+        <p>G-Shop Business Card</p>
+        <p>Shop with Points</p>
+        <p>Reload Your Balance</p>
+      </div>
+
+      <div>
+        <h4>Let Us Help You</h4>
+        <p>Track My Order</p>
+        <p>My Orders</p>
+        <p>Shipping Rates</p>
+        <p>Returns & Replacements</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2025 G-Shop. All rights reserved.</div>
+      <div class="replit">Made with Replit</div>
+    </div>
+  </footer>
+
 </body>
 </html>
