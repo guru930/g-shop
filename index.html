@@ -3,145 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Shop | Amazon Style Electronics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>G-SHOP | Store</title>
     <style>
-        :root { --amzn-navy: #232f3e; --amzn-black: #131921; --amzn-orange: #febd69; --amzn-button: #ffd814; --amzn-button-hover: #f7ca00; }
-        body { font-family: 'Arial', sans-serif; background-color: #eaeded; margin: 0; }
-        
-        /* Proper Amazon Header */
-        header { background-color: var(--amzn-black); color: white; padding: 10px 20px; }
-        .search-bar { flex: 1; display: flex; height: 40px; border-radius: 4px; overflow: hidden; margin: 0 15px; }
-        .search-bar select { background: #f3f3f3; border: none; padding: 0 10px; font-size: 12px; color: #555; cursor: pointer; }
-        .search-bar input { flex: 1; border: none; padding: 0 10px; outline: none; }
-        .search-bar button { background: var(--amzn-orange); border: none; width: 45px; cursor: pointer; font-size: 18px; }
-        
-        /* Nav Belt */
-        .nav-belt { background-color: var(--amzn-navy); color: white; padding: 8px 20px; display: flex; gap: 15px; font-size: 14px; }
-        
-        /* Sidebar Design */
-        .sidebar { width: 220px; background: white; padding: 15px; border-right: 1px solid #ddd; min-height: 100vh; }
-        .sidebar h3 { font-size: 14px; font-weight: bold; margin-bottom: 8px; }
-        .sidebar ul { list-style: none; padding: 0; }
-        .sidebar li { font-size: 13px; margin-bottom: 5px; color: #333; cursor: pointer; }
-        .sidebar li:hover { color: #c45500; }
-        .sidebar li.active { color: #c45500; font-weight: bold; }
+        /* CSS Styles */
+        :root {
+            --primary-bg: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border-color: #334155;
+        }
 
-        /* Product Grid */
-        .product-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; padding: 15px; flex: 1; }
-        .product-card { background: white; border: 1px solid #ddd; border-radius: 3px; padding: 15px; display: flex; flex-direction: column; transition: 0.2s; }
-        .product-card:hover { border-color: #c45500; }
-        .product-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 10px; }
-        .product-title { font-size: 14px; color: #007185; line-height: 1.4; height: 40px; overflow: hidden; margin-bottom: 5px; }
-        .rating { color: #ffa41c; font-size: 12px; margin-bottom: 5px; }
-        .price { font-size: 21px; color: #0f1111; margin-bottom: 10px; }
-        
-        /* Amazon Buttons */
-        .btn-amazon { background: var(--amzn-button); border: 1px solid #a88734; border-radius: 20px; padding: 8px; font-size: 12px; margin-bottom: 8px; cursor: pointer; box-shadow: 0 2px 5px rgba(213,217,217,.5); }
-        .btn-amazon:hover { background: var(--amzn-button-hover); }
-        .btn-orange { background: #ffa41c; border-color: #ff8f00; }
-        
-        /* Footer */
-        .back-top { background: #37475a; color: white; text-align: center; padding: 15px; font-size: 13px; cursor: pointer; }
-        footer { background: var(--amzn-navy); color: white; padding: 40px 20px; text-align: center; }
-    </style>
-</head>
-<body>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<header class="flex items-center">
-    <div class="text-2xl font-bold pt-1 cursor-pointer" style="color: white;">G-Shop<span style="color: var(--amzn-orange);">.io</span></div>
-    <div class="search-bar">
-        <select><option>Electronics</option></select>
-        <input type="text" placeholder="Search G-Shop">
-        <button><i class="fas fa-search"></i></button>
-    </div>
-    <div class="flex gap-4 text-xs">
-        <div>Hello, Gurpreet<br><b class="text-sm">Account & Lists</b></div>
-        <div>Returns<br><b class="text-sm">& Orders</b></div>
-        <div class="text-3xl relative"><i class="fas fa-shopping-cart"></i><span class="absolute top-0 right-[-10px] bg-orange-500 text-white text-xs px-1 rounded-full">0</span></div>
-    </div>
-</header>
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-<nav class="nav-belt">
-    <span>All</span><span>Audio</span><span>Wearables</span><span>Gaming</span><span style="font-weight: bold; color: var(--amzn-orange);">Electronics</span><span>Track Order</span><span>Admin Panel</span>
-</nav>
-
-<div class="flex max-w-[1500px] mx-auto mt-4">
-    <aside class="sidebar">
-        <h3>Department</h3>
-        <ul>
-            <li>All</li><li>Audio</li><li>Wearables</li><li class="active">Electronics</li><li>Smart Home</li><li>Gaming</li>
-        </ul>
-    </aside>
-
-    <main class="flex-1">
-        <div class="px-4 py-2 border-b bg-white text-sm">1-9 of 9 results for <span class="text-red-700 font-bold">"Electronics"</span></div>
-        
-        <div class="product-grid p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg" alt="Massage Chair">
-                <div class="product-title">Pro Massage Chair X1 - Full Body Shiatsu Recliner with Heat</div>
-                <div class="rating">⭐⭐⭐⭐⭐ 2,847</div>
-                <div class="price"><span class="text-sm">$</span>3,499<span class="text-sm">.00</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg" alt="8K TV">
-                <div class="product-title">8K Quantum TV 75" Ultra HD Smart LED with Alexa Built-in</div>
-                <div class="rating">⭐⭐⭐⭐⭐ 1,223</div>
-                <div class="price"><span class="text-sm">$</span>2,999<span class="text-sm">.00</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg" alt="Gaming PC">
-                <div class="product-title">High-End Gaming PC Tower - RTX 4090, 64GB RAM, 2TB SSD</div>
-                <div class="rating">⭐⭐⭐⭐⭐ 1,990</div>
-                <div class="price"><span class="text-sm">$</span>1,999<span class="text-sm">.00</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg" alt="Drone">
-                <div class="product-title">Drone Pro Controller - 4K Camera Professional Quadcopter</div>
-                <div class="rating">⭐⭐⭐⭐ 987</div>
-                <div class="price"><span class="text-sm">$</span>1,199<span class="text-sm">.00</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg" alt="Generator">
-                <div class="product-title">Smart Home Generator 5000W - Portable Power Station</div>
-                <div class="rating">⭐⭐⭐⭐⭐ 4,521</div>
-                <div class="price"><span class="text-sm">$</span>2,499<span class="text-sm">.00</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="https://m.media-amazon.com/images/I/61X508v81HL._AC_SL1500_.jpg" alt="Charger">
-                <div class="product-title">Wireless Charging Pad Trio - 3-in-1 Fast Charging Station</div>
-                <div class="rating">⭐⭐⭐⭐⭐ 4,571</div>
-                <div class="price"><span class="text-sm">$</span>154<span class="text-sm">.99</span></div>
-                <button class="btn-amazon">Add to Cart</button>
-                <button class="btn-amazon btn-orange">Buy Now</button>
-            </div>
-
-        </div>
-    </main>
-</div>
-
-<div class="back-top" onclick="window.scrollTo(0,0)">Back to top</div>
-<footer>
-    <div class="text-xs opacity-70">© 2026 G-SHOP International. All Rights Reserved.</div>
-</footer>
-
-</body>
-</html>
+        /* Navigation */
+        header {
+            background-color: var(--card-bg);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom:
+                
