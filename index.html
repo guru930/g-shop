@@ -1,162 +1,526 @@
+# index.html
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Shop | Electronics Department</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --gs-orange: #f37021; --gs-dark: #232f3e; --gs-light-bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: white; margin: 0; }
-        
-        /* Proper Header with Logo, Search, Accounts */
-        header { background-color: white; border-bottom: 1px solid #ddd; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
-        .logo { font-size: 28px; font-weight: 900; color: #f37021; }
-        .search-container { flex: 1; max-width: 700px; display: flex; height: 36px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
-        .search-container select { background: #f3f3f3; border: none; padding: 0 10px; font-size: 11px; }
-        .search-container input { flex: 1; border: none; padding: 0 10px; outline: none; }
-        .search-container button { background: var(--gs-orange); color: white; width: 45px; border: none; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        /* Dark Nav Belt */
-        .nav-belt { background-color: var(--gs-dark); color: white; display: flex; gap: 20px; padding: 8px 20px; font-size: 12px; font-weight: 500; }
-        .nav-item-active { color: #febd69; }
+    body {
+      background: #f3f3f3;
+      color: #111;
+    }
 
-        /* Sidebar Department List */
-        .sidebar { width: 220px; padding: 20px; border-right: 1px solid #eee; background-color: #fcfcfc; }
-        .sidebar h3 { font-size: 13px; font-weight: bold; margin-bottom: 10px; }
-        .sidebar ul { list-style: none; padding: 0; font-size: 13px; color: #555; }
-        .sidebar li { margin-bottom: 8px; cursor: pointer; }
-        .sidebar li.active { color: var(--gs-orange); font-weight: bold; }
-        .sidebar li:hover { color: var(--gs-orange); }
+    .topbar {
+      background: #111827;
+      color: white;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        /* Product Cards Grid */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; padding: 15px; flex: 1; }
-        .card { border: 1px solid #e2e8f0; border-radius: 3px; padding: 15px; display: flex; flex-direction: column; background: white; transition: 0.2s; }
-        .card:hover { border-color: #f37021; }
-        .img-wrapper { height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        .card img { max-height: 100%; max-width: 100%; object-fit: contain; }
-        .price-text { font-size: 21px; font-weight: 500; color: #0f1111; margin-top: 10px; }
-        .price-cents { font-size: 12px; vertical-align: top; }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ff8a00;
+    }
 
-        /* Buttons DITTO Copy */
-        .btn-cart { background-color: #ed9220; border: 1px solid #ca7605; color: white; padding: 7px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-bottom: 8px; cursor: pointer; text-transform: uppercase; }
-        .btn-cart:hover { background-color: #d65a10; }
-        .btn-buy { background-color: #f0c14b; border: 1px solid #a88734; color: #111; padding: 7px; border-radius: 3px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        .btn-buy:hover { background-color: #f7ca00; }
+    .search-box {
+      flex: 1;
+      display: flex;
+      background: white;
+      border-radius: 4px;
+      overflow: hidden;
+      min-width: 200px;
+    }
 
-        /* Footer */
-        .footer-dark { background-color: var(--gs-dark); color: white; padding: 40px 20px; font-size: 12px; }
-        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
-    </style>
+    .search-box select,
+    .search-box input {
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+
+    .search-box input {
+      flex: 1;
+    }
+
+    .search-btn {
+      background: #ff8a00;
+      color: white;
+      border: none;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+
+    .menu {
+      background: #1f2937;
+      color: white;
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, #1f2937, #374151);
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero span {
+      color: #ff8a00;
+    }
+
+    .hero p {
+      color: #ddd;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons button {
+      padding: 12px 22px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .primary-btn {
+      background: #ff8a00;
+      color: white;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.4) !important;
+    }
+
+    .offers {
+      background: #fff4e6;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 12px;
+      flex-wrap: wrap;
+      border-top: 1px solid #f0d9b5;
+      border-bottom: 1px solid #f0d9b5;
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 25px 15px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .category-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff8a00;
+      color: white;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .rating {
+      color: #ffb400;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cart-btn,
+    .buy-btn {
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .cart-btn {
+      background: #ff8a00;
+      color: white;
+    }
+
+    .buy-btn {
+      background: #ffd200;
+      color: black;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .feature-box {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    footer {
+      background: #1f2937;
+      color: white;
+      margin-top: 40px;
+    }
+
+    .back-top {
+      background: #273549;
+      text-align: center;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 35px 20px;
+    }
+
+    .footer-grid h4 {
+      margin-bottom: 14px;
+    }
+
+    .footer-grid p {
+      color: #c9c9c9;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">G-Shop</div>
-    <div class="search-container">
-        <select><option>All</option></select>
-        <input type="text" placeholder="Search Electronics Department">
-        <button><i class="fas fa-search"></i></button>
+  <header>
+    <div class="topbar">
+      <div class="logo">G-Shop</div>
+
+      <div class="search-box">
+        <select>
+          <option>All</option>
+          <option>Electronics</option>
+          <option>Gaming</option>
+        </select>
+
+        <input type="text" placeholder="Search G-Shop...">
+        <button class="search-btn">🔍</button>
+      </div>
     </div>
-    <div class="flex gap-5 text-xs text-gray-700 ml-4">
-        <div>Hello, Gurpreet<br><b>Account</b></div>
-        <div>Returns<br><b>& Orders</b></div>
-        <div class="text-3xl relative pt-1"><i class="fas fa-shopping-cart text-gray-800"></i><span class="absolute top-0 right-[-10px] bg-orange-600 text-white text-[10px] px-1 rounded-full font-bold">0</span></div>
+
+    <nav class="menu">
+      <a href="#">All Products</a>
+      <a href="#">Audio</a>
+      <a href="#">Wearables</a>
+      <a href="#">Gaming</a>
+      <a href="#">Electronics</a>
+      <a href="#">Smart Home</a>
+      <a href="#">Automotive</a>
+      <a href="#">Track Order</a>
+      <a href="#">Admin Panel</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Premium Electronics.<br><span>Unbeatable Prices.</span></h1>
+
+    <p>
+      Top-rated gear, delivered fast to USA & Canada.
+      Spend over $100 and get $30 off.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="primary-btn">Shop All Products →</button>
+      <button class="secondary-btn">Track My Orders</button>
     </div>
-</header>
+  </section>
 
-<nav class="nav-belt">
-    <span>All Products</span>
-    <span>Audio</span>
-    <span>Wearables</span>
-    <span>Gaming</span>
-    <span class="nav-item-active">Electronics</span>
-    <span>Smart Home</span>
-    <span>Track Order</span>
-    <span class="font-bold cursor-pointer text-orange-300" onclick="prompt('Admin Password:')">Admin Panel</span>
-</nav>
+  <div class="offers">
+    <div>🏷 Spend $100+ — Save $30 instantly at checkout</div>
+    <div>🏷 Spend $200+ — Save $50 instantly at checkout</div>
+  </div>
 
-<div class="flex max-w-[1400px] mx-auto mt-4">
-    <aside class="sidebar">
-        <h3>Department</h3>
-        <ul>
-            <li>All</li>
-            <li>Audio</li>
-            <li>Wearables</li>
-            <li>Gaming</li>
-            <li class="active">Electronics</li>
-            <li>Smart Home</li>
-            <li>Automotive</li>
-            <li>Accessories</li>
-        </ul>
-    </aside>
+  <section class="section">
+    <h2 class="section-title">Shop by Category</h2>
 
-    <main class="results-area flex-1">
-        <div class="p-4 border-b text-sm text-gray-600">1-9 of 9 results in <b>Electronics</b></div>
-        <div class="product-grid">
-            
-            <div class="card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/71Y8S9F0PGL._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">Pro Massage Chair X1</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$3,499.00</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+    <div class="categories">
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+        <p>Audio</p>
+      </div>
 
-            <div class="product-card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/91tA43u2rSL._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">8K Quantum TV 75"</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$2,999.00</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1067/1067555.png">
+        <p>Wearables</p>
+      </div>
 
-            <div class="card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/71nI6P8qS8L._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">High-End Gaming PC Tower</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$1,999.00</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/686/686589.png">
+        <p>Gaming</p>
+      </div>
 
-            <div class="card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/719Fv1XwWBL._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">Drone Pro Controller</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$1,199.00</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
+        <p>Electronics</p>
+      </div>
 
-            <div class="card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/71nE8e4X-iL._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">Smart Home Generator</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$2,499.00</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/619/619153.png">
+        <p>Smart Home</p>
+      </div>
 
-            <div class="card">
-                <div class="img-wrapper"><img src="https://m.media-amazon.com/images/I/61X508v81HL._AC_SL1500_.jpg"></div>
-                <h4 class="text-sm font-medium">Wireless Charging Pad Trio</h4>
-                <div class="text-xl font-bold mt-1 text-[#0f1111]">$154.99</div>
-                <button class="btn-cart mt-4">Add to Cart</button>
-                <button class="btn-buy">Buy Now</button>
-            </div>
+      <div class="category-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/741/741407.png">
+        <p>Automotive</p>
+      </div>
+    </div>
+  </section>
 
+  <section class="section">
+    <h2 class="section-title">Featured Products</h2>
+
+    <div class="products">
+
+      <div class="product-card">
+        <span class="badge">PREMIUM</span>
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-title">Pro Massage Chair X1</div>
+        <div class="rating">★★★★★ 2347</div>
+        <div class="price">$3,499</div>
+
+        <div class="btn-group">
+          <button class="cart-btn">🛒 Add to Cart</button>
+          <button class="buy-btn">⚡ Buy Now</button>
         </div>
-    </main>
-</div>
+      </div>
 
-<footer class="footer-dark text-center">
-    <div class="footer-grid">
-        <div><b>Get to Know Us</b><br>About G-Shop<br>Careers</div>
-        <div><b>Make Money with Us</b><br>Sell on G-Shop<br>Affiliate Program</div>
-        <div><b>Payment Products</b><br>G-Shop Business Card<br>Shop with Points</div>
-        <div><b>Let Us Help You</b><br>Track My Order<br>Returns & Rates</div>
+      <div class="product-card">
+        <span class="badge">TOP SELLER</span>
+        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-title">8K Quantum TV 75”</div>
+        <div class="rating">★★★★★ 1223</div>
+        <div class="price">$2,999</div>
+
+        <div class="btn-group">
+          <button class="cart-btn">🛒 Add to Cart</button>
+          <button class="buy-btn">⚡ Buy Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="badge">BEST VALUE</span>
+        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1200&auto=format&fit=crop">
+        <div class="product-title">Gaming PC Tower</div>
+        <div class="rating">★★★★★ 1390</div>
+        <div class="price">$1,999</div>
+
+        <div class="btn-group">
+          <button class="cart-btn">🛒 Add to Cart</button>
+          <button class="buy-btn">⚡ Buy Now</button>
+        </div>
+      </div>
+
     </div>
-    <p class="text-xs mt-12 opacity-50 border-t border-gray-600 pt-8">© 2026 G-SHOP International. All Rights Reserved. USA Market Division.</p>
-</footer>
+  </section>
+
+  <section class="section">
+    <div class="features">
+
+      <div class="feature-box">
+        <h3>🚚 Free Fast Shipping</h3>
+        <p>Free delivery across USA & Canada on all orders.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>🛡 Verified Authentic</h3>
+        <p>Every item is authenticated before it ships to you.</p>
+      </div>
+
+      <div class="feature-box">
+        <h3>🔄 Easy Returns</h3>
+        <p>30-day hassle-free returns on all purchases.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="back-top">Back to top</div>
+
+    <div class="footer-grid">
+      <div>
+        <h4>Get to Know Us</h4>
+        <p>About G-Shop</p>
+        <p>Careers</p>
+        <p>Press Center</p>
+      </div>
+
+      <div>
+        <h4>Make Money with Us</h4>
+        <p>Sell on G-Shop</p>
+        <p>Affiliate Program</p>
+        <p>Advertise Your Products</p>
+      </div>
+
+      <div>
+        <h4>Payment Products</h4>
+        <p>G-Shop Business Card</p>
+        <p>Shop with Points</p>
+        <p>Reload Your Balance</p>
+      </div>
+
+      <div>
+        <h4>Let Us Help You</h4>
+        <p>Track My Order</p>
+        <p>My Orders</p>
+        <p>Returns & Replacements</p>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
+```
+
+# Use
+
+1. Save file name as `index.html`
+2. Open in browser
+3. Mobile responsive design included
+4. Same G-Shop style like screenshots
